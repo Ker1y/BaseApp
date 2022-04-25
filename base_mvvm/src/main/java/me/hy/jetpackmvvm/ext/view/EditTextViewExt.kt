@@ -1,9 +1,13 @@
 package me.hy.jetpackmvvm.ext.view
 
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextWatcher
 import android.widget.EditText
 import android.widget.TextView
+import me.hy.jetpackmvvm.ext.MoneyInputFilter
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 /**
  * 优化输入框
@@ -70,4 +74,62 @@ fun TextView.isEmpty(): Boolean {
  */
 fun TextView.isTrimEmpty(): Boolean {
     return this.textStringTrim().isEmpty()
+}
+
+
+/**
+ *  设置EditText输入只能为价格格式
+ */
+
+fun EditText.setMoneyMode() {
+    filters = arrayOf(MoneyInputFilter())
+}
+
+/**
+ * 禁止EditText输入空格和换行符
+ *
+ * @param length 需要限制输入的长度
+ */
+fun EditText.setNoInputSpace(length: Int) {
+    val filter = InputFilter { source, start, end, dest, dstart, dend ->
+        if (source == " " || source.toString().contentEquals("\n")) {
+            ""
+        } else {
+            null
+        }
+    }
+    this.filters = arrayOf(filter, InputFilter.LengthFilter(length))
+}
+
+fun EditText.setNoInputSpace() {
+    val filter = InputFilter { source, start, end, dest, dstart, dend ->
+        if (source == " " || source.toString().contentEquals("\n")) {
+            ""
+        } else {
+            null
+        }
+    }
+    this.filters = arrayOf(filter)
+}
+
+
+
+/**
+ * 禁止EditText输入特殊字符
+ *
+ * @param editText EditText输入框
+ */
+fun EditText.setEditTextInputSpeChat(editText: EditText) {
+    val filter = InputFilter { source, start, end, dest, dstart, dend ->
+        val speChat =
+            "[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]"
+        val pattern: Pattern = Pattern.compile(speChat)
+        val matcher: Matcher = pattern.matcher(source.toString())
+        if (matcher.find()) {
+            ""
+        } else {
+            null
+        }
+    }
+    editText.filters = arrayOf(filter)
 }

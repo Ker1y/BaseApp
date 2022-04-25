@@ -1,11 +1,15 @@
 package com.hy.baseapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hy.baseapp.base.BaseActivity
+import com.hy.baseapp.databinding.ActivityMainBinding
+import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+class MainActivity : BaseActivity<BaseViewModel,ActivityMainBinding>() {
+
+    override fun initView(savedInstanceState: Bundle?) {
+        fullStatusBar()
     }
+
+
 }

@@ -1,7 +1,6 @@
 package me.hy.jetpackmvvm.ext
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.kunminx.architecture.ui.callback.UnPeekLiveData
 import kotlinx.coroutines.*
 import me.hy.jetpackmvvm.base.activity.BaseVmActivity
@@ -315,7 +314,7 @@ suspend fun <T> executeResponse(
 }
 
 /**
- *  调用携程
+ *  调用协程
  * @param block 操作耗时操作任务
  * @param success 成功回调
  * @param error 失败回调 可不给
@@ -336,4 +335,29 @@ fun <T> BaseViewModel.launch(
             error(it)
         }
     }
+}
+
+/**
+ * 只接收一次自动移除
+ */
+fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
+    observe(lifecycleOwner, object : Observer<T> {
+        override fun onChanged(t: T?) {
+            if (lifecycleOwner.lifecycle.currentState == Lifecycle.State.DESTROYED){
+                removeObserver(this)
+                return
+            }
+            observer.onChanged(t)
+            removeObserver(this)
+        }
+    })
+}
+
+fun <T> LiveData<T>.observeOnce(observer: (T) -> Unit) {
+    observeForever(object: Observer<T> {
+        override fun onChanged(value: T) {
+            observer(value)
+            removeObserver(this)
+        }
+    })
 }

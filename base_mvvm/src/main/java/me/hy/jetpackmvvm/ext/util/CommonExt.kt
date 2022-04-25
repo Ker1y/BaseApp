@@ -11,6 +11,7 @@ import android.text.Spanned
 import android.text.TextUtils
 import android.view.View
 import android.widget.TextView
+import me.hy.jetpackmvvm.base.appContext
 import me.hy.jetpackmvvm.ext.view.clickNoRepeat
 
 /**
@@ -44,39 +45,22 @@ inline fun <reified T> T?.notNull(notNullAction: (T) -> Unit, nullAction: () -> 
 }*/
 
 
-
-
-/**
- * dp值转换为px
- */
-fun Context.dp2px(dp: Int): Int {
-    val scale = resources.displayMetrics.density
-    return (dp * scale + 0.5f).toInt()
-}
-
 /**
  * px值转换成dp
  */
-fun Context.px2dp(px: Int): Int {
-    val scale = resources.displayMetrics.density
-    return (px / scale + 0.5f).toInt()
+fun Int.px2dp(): Int {
+    val scale = appContext.resources.displayMetrics.density
+    return (this / scale + 0.5f).toInt()
 }
 
 /**
  * dp值转换为px
  */
-fun View.dp2px(dp: Int): Int {
-    val scale = resources.displayMetrics.density
-    return (dp * scale + 0.5f).toInt()
+fun Int.dp2px(): Int {
+    val scale = appContext.resources.displayMetrics.density
+    return (this * scale + 0.5f).toInt()
 }
 
-/**
- * px值转换成dp
- */
-fun View.px2dp(px: Int): Int {
-    val scale = resources.displayMetrics.density
-    return (px / scale + 0.5f).toInt()
-}
 
 /**
  * 复制文本到粘贴板
@@ -142,12 +126,12 @@ fun String.toHtml(flag: Int = Html.FROM_HTML_MODE_LEGACY): Spanned {
 
 }
 
- fun setGradient(textView: TextView) {
+ fun setGradient(textView: TextView,startColor:String,endColor:String) {
     val endX = textView.paint.textSize * textView.text.length
     val linearGradient = LinearGradient(
         0f, 0f, endX, 0f,
-        Color.parseColor("#FC6F6C"),
-        Color.parseColor("#FDE48E"),
+        Color.parseColor(startColor),
+        Color.parseColor(endColor),
         Shader.TileMode.CLAMP
     )
     textView.paint.shader = linearGradient

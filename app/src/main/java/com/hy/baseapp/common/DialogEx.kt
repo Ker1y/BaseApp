@@ -1,5 +1,6 @@
 package com.hy.baseapp.common
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
@@ -11,6 +12,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.hy.baseapp.base.event.App
 
 
+@SuppressLint("StaticFieldLeak")
 private var mLoadingDialog: LoadingDialog?=null
 
 /**
@@ -103,7 +105,6 @@ fun Activity.showLoadingDialogEx(){
             }
         }
     }
-    this.registerActivityLifecycleCallbacks(App.popLifeCycleCallBack)
 }
 
 fun Fragment.showLoadingDialogEx(){
@@ -131,39 +132,4 @@ fun Activity.dismissLoadingExt() {
 fun Fragment.dismissLoadingExt() {
     mLoadingDialog?.dismiss()
     mLoadingDialog = null
-}
-
-/**
- * 注册生命周期
- * 防止Dialog内存泄漏
- */
-class PopLifeCycleCallBack:Application.ActivityLifecycleCallbacks{
-    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-
-    }
-
-    override fun onActivityStarted(activity: Activity) {
-
-    }
-
-    override fun onActivityResumed(activity: Activity) {
-
-    }
-
-    override fun onActivityPaused(activity: Activity) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onActivityStopped(activity: Activity) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onActivityDestroyed(activity: Activity) {
-        TODO("Not yet implemented")
-    }
-
 }

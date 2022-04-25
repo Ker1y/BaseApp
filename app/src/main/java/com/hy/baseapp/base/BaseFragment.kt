@@ -95,6 +95,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
 
     override fun onDestroy() {
+        dismissLoading()
         super.onDestroy()
     }
 

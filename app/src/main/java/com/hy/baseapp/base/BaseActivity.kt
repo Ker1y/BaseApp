@@ -60,6 +60,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
     override fun onDestroy() {
         super.onDestroy()
+        dismissLoading()
     }
 
     /**
@@ -91,7 +92,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     /**
      * 沉浸状态栏
      */
-    fun immersionFullStatusBar(){
+    fun fullStatusBar(){
         ImmersionBar.with(this).statusBarDarkFont(true).transparentStatusBar().init()
     }
 
@@ -148,6 +149,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     override fun dismissLoading() {
         dismissLoadingExt()
     }
+
 
    /* *//**
      * 在任何情况下本来适配正常的布局突然出现适配失效，适配异常等问题，只要重写 Activity 的 getResources() 方法

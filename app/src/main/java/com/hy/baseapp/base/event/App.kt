@@ -6,7 +6,6 @@ import com.hy.baseapp.BuildConfig
 import com.hy.baseapp.R
 import com.hy.baseapp.base.event.App.Companion.appViewModelInstance
 import com.hy.baseapp.base.event.App.Companion.eventViewModelInstance
-import com.hy.baseapp.common.PopLifeCycleCallBack
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -35,7 +34,6 @@ class App : BaseApp() {
 
     companion object {
         lateinit var INSTANCE: BaseApp
-        val popLifeCycleCallBack: PopLifeCycleCallBack by lazy { PopLifeCycleCallBack() }
         var mQnToken = ""
         var mQnPrefix = ""
 

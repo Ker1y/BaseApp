@@ -434,7 +434,7 @@
 #-----------处理反射类---------------
 
 #databinding反射混淆,必加
--keep class com.qingke.chayuan.databinding.** { *;}
+-keep class com.hy.baseapp.databinding.** { *;}
 
 #-----------处理js交互---------------
 

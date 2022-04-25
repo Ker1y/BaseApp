@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.hy.baseapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:name=".base.event.App"
         android:allowBackup="true"
