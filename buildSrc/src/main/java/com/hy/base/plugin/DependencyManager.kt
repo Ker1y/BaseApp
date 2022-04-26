@@ -1,8 +1,8 @@
-package com.hi.dhl.plugin
+package com.hy.base.plugin
 
 /**
  * <pre>
- *     author: dhl
+ *     author: Hy
  *     date  : 2020/7/3
  *     desc  : 如果数量少的话，放在一个类里面就可以，如果数量多的话，可以拆分为多个类
  * </pre>
@@ -11,14 +11,14 @@ package com.hi.dhl.plugin
 object Versions {
     const val retrofit = "2.9.0"
     const val okhttpLogging = "4.9.0"
-    const val appcompat = "1.2.0"
+    const val appcompat = "1.4.1"
     const val coreKtx = "1.3.2"
-    const val constraintlayout = "2.0.4"
+    const val constraintlayout = "2.1.3"
     const val paging = "3.0.0-alpha02"
     const val timber = "4.7.1"
     const val kotlin = "1.4.31"
-    const val kotlinCoroutinesCore = "1.4.0"
-    const val kotlinCoroutinesAndrid = "1.4.0"
+    const val kotlinCoroutinesCore = "1.7.0"
+    const val kotlinCoroutinesAndroid = "1.4.0"
     const val koin = "2.1.5"
     const val work = "2.2.0"
     const val room = "2.3.0-alpha01"
@@ -27,20 +27,33 @@ object Versions {
     const val fragment = "1.3.0-alpha06"
     const val anko = "0.10.8"
     const val swiperefreshlayout = "1.1.0"
-    const val junit = "4.13.1"
+    const val junit = "4.13.2"
     const val junitExt = "1.1.2"
-    const val espressoCore = "3.3.0"
+    const val espressoCore = "3.4.0"
     const val jDatabinding = "1.0.4"
     const val progressview = "1.0.2"
     const val runtime = "1.1.0"
     const val hit = "2.28-alpha"
     const val hitViewModule = "1.0.0-alpha01"
     const val appStartup = "1.0.0"
-    const val material = "1.3.0"
+    const val material = "1.5.0"
     const val binding = "1.1.3"
     const val ktkitSnapshot = "1.0.0-SNAPSHOT"
     const val ktkit = "1.0.0"
     const val lifecycleVersion = "2.3.0-beta01"
+    const val flexbox = "3.0.0"
+    const val immersionBar = "3.0.0"
+    const val mmkv = "1.2.10"
+    const val autosize = "1.2.1"
+    const val backgroundLibrary = "1.7.1"
+    const val baseRecyclerViewAdapterHelper = "3.0.6"
+    const val retrofitAdapter = "3.0.0"
+    const val materialDialogs = "3.3.0"
+    const val glide = "4.12.0"
+    const val basePopup = "3.1.7"
+    const val xxPermissions = "8.8"
+    const val smartRefreshLayout = "2.0.5"
+    const val gifDrawable = "1.2.6"
 }
 
 object AndroidX {
@@ -94,7 +107,7 @@ object Kt {
     const val coroutinesCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutinesCore}"
     const val coroutinesAndroid =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutinesAndrid}"
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutinesAndroid}"
     const val test = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     const val plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 }
@@ -126,11 +139,11 @@ object Depend {
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
 
-    const val jDatabinding = "com.hi-dhl:jdatabinding:${Versions.jDatabinding}"
-    const val progressview = "com.hi-dhl:progressview:${Versions.progressview}"
-    const val binding = "com.hi-dhl:binding:${Versions.binding}"
-    const val ktkit = "com.hi-dhl:ktkit:${Versions.ktkit}"
-    const val ktkitSnapshot = "com.hi-dhl:ktkit:${Versions.ktkitSnapshot}"
+    const val jDatabinding = "com.hy-base:jdatabinding:${Versions.jDatabinding}"
+    const val progressview = "com.hy-base:progressview:${Versions.progressview}"
+    const val binding = "com.hy-base:binding:${Versions.binding}"
+    const val ktkit = "com.hy-base:ktkit:${Versions.ktkit}"
+    const val ktkitSnapshot = "com.hy-base:ktkit:${Versions.ktkitSnapshot}"
 }
 
 

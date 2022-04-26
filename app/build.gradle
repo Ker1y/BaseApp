@@ -1,3 +1,5 @@
+import com.hy.base.plugin.Android
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -89,7 +91,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     //三方基础功能库
-    implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
     implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'

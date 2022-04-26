@@ -1,8 +1,8 @@
-package com.hi.dhl.plugin
+package com.hy.base.plugin
 
 /**
  * <pre>
- *     author: dhl
+ *     author: base
  *     date  : 2020/7/3
  *     desc  : 配置和 Build 相关的
  * </pre>
