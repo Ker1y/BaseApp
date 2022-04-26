@@ -1,26 +1,84 @@
+@file:OptIn(ExperimentalContracts::class)
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package me.hy.jetpackmvvm.ext.util
 
-import android.graphics.Color
-import android.view.Gravity
-import com.blankj.utilcode.util.ToastUtils
+import android.util.Patterns
 import com.google.gson.Gson
+import java.math.BigInteger
+import java.security.MessageDigest
 import java.util.regex.Pattern
+import kotlin.contracts.ExperimentalContracts
+import kotlin.contracts.contract
 
 /**
- * 是否为手机号  0开头 12开头的不支持
+ * <pre>
+ *     author: dhl
+ *     date  : 2021/5/15
+ *     desc  :
+ * </pre>
  */
-fun String?.isPhone(): Boolean {
-    return this?.let {
-        Pattern.matches(it, "0?(13|14|15|16|17|18|19)[0-9]{9}")
-    }?:let {
-       false
+
+@SinceKotlin("1.3")
+@kotlin.internal.InlineOnly
+inline fun String?.isNotNullOrEmpty(): Boolean {
+    contract {
+        returns(true) implies (this@isNotNullOrEmpty != null)
     }
+
+    return this != null && !this.trim().equals("null", true) && this.trim().isNotEmpty()
+}
+
+@kotlin.internal.InlineOnly
+inline fun String.isValidPhone(): Boolean {
+    return this.isNotNullOrEmpty() && Patterns.PHONE.matcher(this).matches()
+}
+
+/**
+ * format Phone number
+ *
+ * Example:
+ *
+ * ```
+ * val phontNumberStr = "044 668 18 00"
+ * phontNumberStr.formatPhoneNumber("CH")
+ * ```
+ */
+//@kotlin.internal.InlineOnly
+//inline fun String.formatPhoneNumber(region: String): String? {
+//    val phoneNumberUtil = PhoneNumberUtil.getInstance()
+//    val number = phoneNumberUtil.parse(this, region)
+//    if (!phoneNumberUtil.isValidNumber(number))
+//        return null
+//    return phoneNumberUtil.format(number, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
+//}
+
+@kotlin.internal.InlineOnly
+inline fun String.isValidEmail(): Boolean {
+    return this.isNotNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+}
+
+@kotlin.internal.InlineOnly
+inline fun String.isIPAddress(): Boolean {
+    return this.isNotNullOrEmpty() && Patterns.IP_ADDRESS.matcher(this).matches()
+}
+
+@kotlin.internal.InlineOnly
+inline fun String.isDomainName(): Boolean {
+    return this.isNotNullOrEmpty() && Patterns.DOMAIN_NAME.matcher(this).matches()
+}
+
+@kotlin.internal.InlineOnly
+inline fun String.md5(): String {
+    val md = MessageDigest.getInstance("MD5")
+    return BigInteger(1, md.digest(toByteArray())).toString(16).padStart(32, '0')
 }
 
 /**
  * 是否为座机号
  */
-fun String?.isTel(): Boolean {
+@kotlin.internal.InlineOnly
+inline fun String?.isTel(): Boolean {
     return this?.let {
         val matcher1 = Pattern.matches("^0(10|2[0-5|789]|[3-9]\\d{2})\\d{7,8}\$", this)
         val matcher2 = Pattern.matches("^0(10|2[0-5|789]|[3-9]\\d{2})-\\d{7,8}$", this)
@@ -37,7 +95,8 @@ fun String?.isTel(): Boolean {
 /**
  * 是否为邮箱号
  */
-fun String?.isEmail(): Boolean {
+@kotlin.internal.InlineOnly
+inline fun String?.isEmail(): Boolean {
     return this?.let {
         Pattern.matches(this, "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*\$")
     }?:let {
@@ -48,14 +107,16 @@ fun String?.isEmail(): Boolean {
 /**
  * 将对象转为JSON字符串
  */
-fun Any?.toJson():String{
+@kotlin.internal.InlineOnly
+inline fun Any?.toJson():String{
     return Gson().toJson(this)
 }
 
 /**
  * 价格格式是否正确(不可为0)
  */
-fun String.isPrice(): Boolean {
+@kotlin.internal.InlineOnly
+inline fun String.isPrice(): Boolean {
     if (this.contains(Regex("^\\+?(?!0+(\\.00?)?\$)\\d+(\\.\\d\\d?)?\$"))
         && checkDecimalFirstNotZero(this)
     ) {
@@ -67,7 +128,8 @@ fun String.isPrice(): Boolean {
 /**
  * 检查首位数字是否为0，如 001.1 则不合法
  */
-private fun checkDecimalFirstNotZero(price: String): Boolean {
+@kotlin.internal.InlineOnly
+inline fun checkDecimalFirstNotZero(price: String): Boolean {
     if (price.contains(".")) { //如果包含小数
         val sub = price.substringBefore(".") //取出小数前面的数字
         return if (sub.length >= 2 && sub.first().toString() != "0") { //当小数前面的数字长度大于2并且第一位不为0则符合规则
@@ -82,7 +144,8 @@ private fun checkDecimalFirstNotZero(price: String): Boolean {
 /**
  * 价格格式是否正确(可为0)
  */
-fun String.isPriceWithout0(): Boolean {
+@kotlin.internal.InlineOnly
+inline fun String.isPriceWithout0(): Boolean {
     if (this.contains(Regex("^[0-9]*\$"))
         && checkDecimalFirstNot0Include0(this)
     ) {
@@ -94,7 +157,8 @@ fun String.isPriceWithout0(): Boolean {
 /**
  * 检查首位数字是否为0，如 001.1 则不合法，若只为0也合法
  */
-private fun checkDecimalFirstNot0Include0(price: String): Boolean {
+@kotlin.internal.InlineOnly
+inline fun checkDecimalFirstNot0Include0(price: String): Boolean {
     if (price.contains(".")) { //如果包含小数
         val sub = price.substringBefore(".") //取出小数前面的数字
         return if (sub.length >= 2 && sub.first().toString() != "0") {
@@ -109,24 +173,6 @@ private fun checkDecimalFirstNot0Include0(price: String): Boolean {
         return true
     }
     return false
-}
-
-fun String.shortToast(gravity: Int = Gravity.CENTER){
-    ToastUtils.make()
-        .setBgColor(Color.parseColor("#FF000000"))
-        .setTextColor(Color.parseColor("#FFFFFF"))
-        .setGravity(gravity,0,100)
-        .setDurationIsLong(false)
-        .show(this)
-}
-
-fun String.longToast(){
-    ToastUtils.make()
-        .setBgColor(Color.parseColor("#FF000000"))
-        .setTextColor(Color.parseColor("#FFFFFF"))
-        .setGravity(Gravity.CENTER,0,100)
-        .setDurationIsLong(true)
-        .show(this)
 }
 
 /**
@@ -151,11 +197,13 @@ fun String.replace2Hint():String {
 /**
  * 微信号 6-20位
  */
-fun String.isWechat():Boolean = this.length in 6..20
+@kotlin.internal.InlineOnly
+inline fun String.isWechat():Boolean = this.length in 6..20
 
 /**
  * 字符串不为空
  */
-inline fun CharSequence?.notNullAndEmptyAndBlank(no:String.()->Unit, nullOrEmptyOrBlank:String.()->Unit = {}) {
+@kotlin.internal.InlineOnly
+inline fun CharSequence?.isNotNullOrEmpty(no:String.()->Unit, nullOrEmptyOrBlank:String.()->Unit = {}) {
     if (this.isNullOrEmpty() || this.isNullOrBlank()) nullOrEmptyOrBlank.invoke(this.toString()) else no.invoke(this.toString())
 }

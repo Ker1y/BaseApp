@@ -275,53 +275,7 @@ fun createBitmapSafely(width: Int, height: Int, config: Bitmap.Config, retryCoun
 }
 
 
-/**
- * 防止重复点击事件 默认0.5秒内不可重复点击
- * @param interval 时间间隔 默认0.5秒
- * @param action 执行方法
- */
-var lastClickTime = 0L
-fun View.clickNoRepeat(interval: Long = 500, action: (view: View) -> Unit) {
-    setOnClickListener {
-        val currentTime = System.currentTimeMillis()
-        if (lastClickTime != 0L && (currentTime - lastClickTime < interval)) {
-            return@setOnClickListener
-        }
-        lastClickTime = currentTime
-        action(it)
-    }
-}
 
-
-/**
- * 防止重复点击,可同时注册多个view
- */
-fun setNoRepeatClick(vararg views: View, interval: Long = 500, onClick: (View) -> Unit) {
-    views.forEach {
-        it.clickNoRepeat(interval = interval) { view ->
-            onClick.invoke(view)
-        }
-    }
-}
-
-/**
- * 防止重复点击,有连续时间相应的回调
- * @param interval 重复间隔
- * @param continuousClick 连续点击的事件相应
- * @param onClick  防抖之后的事件响应
- */
-inline fun View.clickNoRepeat(crossinline continuousClick:(View)->Unit, crossinline onClick: (View) -> Unit,interval: Long = 600) {
-    var lastTime2 = 0L
-    setOnClickListener {
-        val currentTime = System.currentTimeMillis()
-        if (lastTime2 != 0L && (currentTime - lastTime2 < interval)) {
-            continuousClick.invoke(it)
-            return@setOnClickListener
-        }
-        lastTime2 = currentTime
-        onClick(it)
-    }
-}
 
 
 fun Any?.notNull(notNullAction:(value:Any) ->Unit,nullAction1:() ->Unit){

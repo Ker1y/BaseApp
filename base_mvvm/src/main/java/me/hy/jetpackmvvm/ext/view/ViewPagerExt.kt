@@ -2,12 +2,8 @@ package me.hy.jetpackmvvm.ext.view
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import androidx.viewpager2.widget.ViewPager2
 
 /**
  * <pre>
@@ -18,59 +14,6 @@ import androidx.viewpager2.widget.ViewPager2
  *
  * </pre>
  */
-
-
-
-fun ViewPager2.init(
-    fragment: Fragment,
-    fragments: ArrayList<Fragment>,
-    isUserInputEnabled: Boolean = true
-): ViewPager2 {
-    //是否可滑动
-    this.isUserInputEnabled = isUserInputEnabled
-    //设置适配器
-    adapter = object : FragmentStateAdapter(fragment) {
-        override fun createFragment(position: Int) = fragments[position]
-        override fun getItemCount() = fragments.size
-    }
-    return this
-}
-
-
-fun ViewPager2.init(
-    activity: AppCompatActivity,
-    fragments: ArrayList<Fragment>,
-    isUserInputEnabled: Boolean = true
-): ViewPager2 {
-    //是否可滑动
-    this.isUserInputEnabled = isUserInputEnabled
-    this.offscreenPageLimit = fragments.size
-
-    //设置适配器
-    adapter = object : FragmentStateAdapter(activity.supportFragmentManager,activity.lifecycle) {
-        override fun createFragment(position: Int) = fragments[position]
-        override fun getItemCount() = fragments.size
-    }
-    return this
-}
-
-fun ViewPager2.init(
-    activity: AppCompatActivity,
-    fragments: MutableList<Fragment>,
-    isUserInputEnabled: Boolean = true
-): ViewPager2 {
-    //是否可滑动
-    this.isUserInputEnabled = isUserInputEnabled
-    this.offscreenPageLimit = fragments.size
-
-    //设置适配器
-    adapter = object : FragmentStateAdapter(activity.supportFragmentManager,activity.lifecycle) {
-        override fun createFragment(position: Int) = fragments[position]
-        override fun getItemCount() = fragments.size
-    }
-    return this
-}
-
 
 fun ViewPager.init(
     views: List<View>,
