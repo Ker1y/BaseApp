@@ -7,4 +7,4 @@
   > BaseMVVM基础框架，`DataBinding` `ViewModel` `Okhttp` `Retrofit` 等Base类的封装
   
 * [KtKit](https://github.com/hi-dhl/KtKit)
-  > Kotlin工具库
+  > Kotlin扩展类工具库
