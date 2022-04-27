@@ -30,7 +30,6 @@ import kotlin.math.roundToInt
 /**
  * 协程计时器
  */
-
 fun tickerFlow(period: Long, initialDelay: Long = 0L) = flow {
     delay(initialDelay)
     while (true) {
@@ -81,32 +80,6 @@ fun getChannelName(): String {
     return channelName?:"null"
 }
 
-/**
- * 修复ViewPager2 Item高度不会自适应的问题
- */
-fun updatePagerHeightForChild(view: View, pager: ViewPager2) {
-
-}
-/**
- * Android 音乐播放器应用里，读出的音乐时长为 long 类型以毫秒数为单位，例如：将 234736 转化为分钟和秒应为 03:55 （包含四舍五入）
- * @param duration 音乐时长
- * @return
- */
-fun timeParse(duration: Int): String? {
-    var time: String? = ""
-    val minute = duration / 60000
-    val seconds = duration % 60000
-    val second = (seconds.toFloat()).roundToInt().toLong()
-    if (minute < 10) {
-        time += "0"
-    }
-    time += "$minute:"
-    if (second < 10) {
-        time += "0"
-    }
-    time += second
-    return time
-}
 
 /**
  * 读取本地Json文件
@@ -129,7 +102,6 @@ fun getJsonFromAssets(context: Context, fileName:String): String {
     }
     return stringBuilder.toString()
 }
-
 
 
 /**

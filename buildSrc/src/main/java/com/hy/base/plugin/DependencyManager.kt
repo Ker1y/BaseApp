@@ -12,11 +12,11 @@ object Versions {
     const val retrofit = "2.9.0"
     const val okhttpLogging = "4.9.0"
     const val appcompat = "1.4.1"
-    const val coreKtx = "1.3.2"
+    const val coreKtx = "1.7.0"
     const val constraintlayout = "2.1.3"
     const val paging = "3.0.0-alpha02"
     const val timber = "4.7.1"
-    const val kotlin = "1.4.31"
+    const val kotlin = "1.5.21"
     const val kotlinCoroutinesCore = "1.7.0"
     const val kotlinCoroutinesAndroid = "1.4.0"
     const val koin = "2.1.5"
@@ -24,11 +24,11 @@ object Versions {
     const val room = "2.3.0-alpha01"
     const val cardview = "1.0.0"
     const val recyclerview = "1.0.0"
-    const val fragment = "1.3.0-alpha06"
+    const val fragment = "1.4.1"
     const val anko = "0.10.8"
     const val swiperefreshlayout = "1.1.0"
     const val junit = "4.13.2"
-    const val junitExt = "1.1.2"
+    const val junitExt = "1.1.3"
     const val espressoCore = "3.4.0"
     const val jDatabinding = "1.0.4"
     const val progressview = "1.0.2"
@@ -38,9 +38,11 @@ object Versions {
     const val appStartup = "1.0.0"
     const val material = "1.5.0"
     const val binding = "1.1.3"
+    const val bugly = ""
     const val ktkitSnapshot = "1.0.0-SNAPSHOT"
     const val ktkit = "1.0.0"
-    const val lifecycleVersion = "2.3.0-beta01"
+    const val lifecycleVersion = "2.4.1"
+    const val lifecycleExtensions = "2.2.0"
     const val flexbox = "3.0.0"
     const val immersionBar = "3.0.0"
     const val mmkv = "1.2.10"
@@ -54,6 +56,12 @@ object Versions {
     const val xxPermissions = "8.8"
     const val smartRefreshLayout = "2.0.5"
     const val gifDrawable = "1.2.6"
+    const val unPeekLiveData = "7.2.0-beta1"
+    const val navigation = "2.4.2"
+    const val cookieJar = "v1.0.1"
+    const val urlManager = "1.4.0"
+    const val utilCodex = "1.31.0"
+    const val viewPager2 = "1.0.0"
 }
 
 object AndroidX {
@@ -70,11 +78,14 @@ object AndroidX {
     const val swiperefreshlayout =
         "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout}"
     const val appStartup = "androidx.startup:startup-runtime:${Versions.appStartup}"
+    const val navigation = "androidx.navigation:navigation-runtime-ktx:${Versions.navigation}"
+    const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
 }
 
 object Android {
     const val material = "com.google.android.material:material:${Versions.material}"
     const val libphonenumber = "com.googlecode.libphonenumber:libphonenumber:7.2.2"
+    const val flexbox = "com.google.android.flexbox:flexbox:${Versions.flexbox}"
 }
 
 object Hilt {
@@ -131,6 +142,8 @@ object Retrofit {
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val mock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
     const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLogging}"
+    const val retrofitAdapter = "com.github.akarnokd:rxjava3-retrofit-adapter:${Versions.retrofitAdapter}"
+    const val urlManager = "me.jessyan:retrofit-url-manager:${Versions.urlManager}"
 }
 
 object Depend {
@@ -144,6 +157,25 @@ object Depend {
     const val binding = "com.hy-base:binding:${Versions.binding}"
     const val ktkit = "com.hy-base:ktkit:${Versions.ktkit}"
     const val ktkitSnapshot = "com.hy-base:ktkit:${Versions.ktkitSnapshot}"
+    const val immersionBar = "com.gyf.immersionbar:immersionbar:${Versions.immersionBar}"
+    const val immersionBarComponents = "com.gyf.immersionbar:immersionbar-components:${Versions.immersionBar}"
+    const val immersionBarKtx = "com.gyf.immersionbar:immersionbar-ktx:${Versions.immersionBar}"
+    const val mmkv = "com.tencent:mmkv-static:${Versions.mmkv}"
+    const val autoSize = "me.jessyan:autosize:${Versions.autosize}"
+    const val backgroundLibrary = "com.github.JavaNoober.BackgroundLibrary:libraryx:${Versions.backgroundLibrary}"
+    const val baseRecyclerViewAdapterHelper = "com.github.CymChad:BaseRecyclerViewAdapterHelper:${Versions.baseRecyclerViewAdapterHelper}"
+    const val materialDialogs = "com.afollestad.material-dialogs:core:${Versions.materialDialogs}"
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    const val basePop = "io.github.razerdp:BasePopup:${Versions.basePopup}"
+    const val xxPermissions = "com.hjq:xxpermissions:${Versions.xxPermissions}"
+    const val smartRefreshLayoutKernel = "io.github.scwang90:refresh-layout-kernel:${Versions.smartRefreshLayout}"
+    const val smartRefreshLayoutHeaderClassics = "io.github.scwang90:refresh-header-classics:${Versions.smartRefreshLayout}"
+    const val smartRefreshLayoutHeaderMaterial = "io.github.scwang90:refresh-header-material:${Versions.smartRefreshLayout}"
+    const val gifDrawable = "pl.droidsonroids.gif:android-gif-drawable:${Versions.gifDrawable}"
+    const val unPeekLiveData = "com.kunminx.arch:unpeek-livedata:${Versions.unPeekLiveData}"
+    const val cookieJar = "com.github.franmontiel:PersistentCookieJar:${Versions.cookieJar}"
+    const val utilCodex = "com.blankj:utilcodex:${Versions.utilCodex}"
 }
 
 
@@ -151,4 +183,6 @@ object Lifecycle {
     const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}" // viewModelScope
     const val runtimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleVersion}" // lifecycleScope
     const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycleVersion}"
+    const val extension = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensions}"
+    const val livedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycleVersion}"
 }

@@ -1,3 +1,4 @@
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
 package me.hy.jetpackmvvm.ext.util
 
 import android.content.ClipData
@@ -28,6 +29,7 @@ val Context.screenHeight
 /**
  * 判断是否为空 并传入相关操作
  */
+@kotlin.internal.InlineOnly
 inline fun <reified T> T?.notNull(notNullAction: (T) -> Unit, nullAction: () -> Unit = {}) {
     if (this != null) {
         notNullAction.invoke(this)

@@ -1,7 +1,11 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+import com.hy.base.plugin.*
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
 android {
     compileSdkVersion rootProject.compileSdkVersion
     buildToolsVersion rootProject.buildToolsVersion
@@ -49,31 +53,32 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation AndroidX.appcompat
+
+    implementation AndroidX.viewPager2
     //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation Kt.kotlinStdlib
+    implementation AndroidX.coreKtx
     //lifecycle
-    api 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
-    api 'androidx.lifecycle:lifecycle-common-java8:2.4.1'
-    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    api Lifecycle.runtimeKtx
+    api Lifecycle.commonJava8
+    api Lifecycle.extension
     // viewModel
-    api "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
-    api "androidx.fragment:fragment-ktx:1.4.1"
+    api Lifecycle.viewModelKtx
+    api Fragment.runtimeKtx
     // liveData
-    api "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
-    api 'com.kunminx.arch:unpeek-livedata:7.2.0-beta1'
+    api Lifecycle.livedataKtx
+    api Depend.unPeekLiveData
     //navigation
-    api 'androidx.navigation:navigation-runtime-ktx:2.4.1'
+    api AndroidX.navigation
     //retrofit
-    api "com.squareup.retrofit2:retrofit:2.9.0"
-    api "com.squareup.retrofit2:converter-gson:2.9.0"
-    api 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    api Retrofit.runtime
+    api Retrofit.gson
+    api Depend.cookieJar
     //动态替换BaseUrl库 使用可参考 https://github.com/JessYanCoding/RetrofitUrlManager
-    api 'me.jessyan:retrofit-url-manager:1.4.0'
+    api Retrofit.urlManager
     //工具类
-    api 'com.blankj:utilcodex:1.31.0'
-    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    api Depend.utilCodex
 
 }
 

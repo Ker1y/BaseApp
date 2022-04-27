@@ -6,6 +6,9 @@ package me.hy.jetpackmvvm.ext.view
 import android.view.View
 import androidx.annotation.CheckResult
 import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import com.blankj.utilcode.util.LogUtils
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -53,10 +56,15 @@ inline fun View.clickFlow(): Flow<View> {
  * }
  */
 @kotlin.internal.InlineOnly
-inline fun View.click(lifecycle: LifecycleCoroutineScope, noinline onClick: (view: View) -> Unit) {
-    clickFlow().onEach {
-        onClick(this)
-    }.launchIn(lifecycle)
+inline fun View.click(lifecycle: LifecycleCoroutineScope? = null, noinline onClick: (view: View) -> Unit) {
+    try {
+        clickFlow().onEach {
+            onClick(this)
+        }.launchIn(lifecycle ?: this.findViewTreeLifecycleOwner()?.lifecycle?.coroutineScope!!)
+    }catch (e:Exception) {
+        LogUtils.e("view获取lifecycleOwner为null,可能已detach")
+        e.printStackTrace()
+    }
 }
 
 /**

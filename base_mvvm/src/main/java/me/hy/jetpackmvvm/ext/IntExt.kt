@@ -13,6 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:Suppress("INVISIBLE_REFERENCE", "INVISIBLE_MEMBER")
+
 package me.hy.jetpackmvvm.ext
 
 import android.view.LayoutInflater
@@ -20,6 +22,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.TimeUtils
 import java.math.BigDecimal
+import java.text.DecimalFormat
+import kotlin.math.roundToInt
 
 
 /**
@@ -94,4 +98,54 @@ fun Int.int2ChineseNumber(show0:Boolean = false): String {
         }
     }
     return str
+}
+
+
+/**
+ * Android 音乐播放器应用里，读出的音乐时长为 long 类型以毫秒数为单位，例如：将 234736 转化为分钟和秒应为 03:55 （包含四舍五入）
+ * @param duration 音乐时长
+ * @return
+ */
+fun Int.timeParse(): String? {
+    var time: String? = ""
+    val minute = this / 60000
+    val seconds = this % 60000
+    val second = (seconds.toFloat()).roundToInt().toLong()
+    if (minute < 10) {
+        time += "0"
+    }
+    time += "$minute:"
+    if (second < 10) {
+        time += "0"
+    }
+    time += second
+    return time
+}
+
+/**
+ * 将秒转化为 HH:mm:ss 的格式
+ *
+ * @param time 秒
+ * @return
+ */
+val decimalFormat: DecimalFormat by lazy { DecimalFormat("00") }
+fun Int.formatHourTime():String {
+    val hh= decimalFormat.format (this / 3600)
+    val mm = decimalFormat.format (this % 3600 / 60)
+    val ss = decimalFormat.format (this % 60)
+    return "$hh:$mm:$ss"
+}
+
+
+/**
+ * 将秒转化为 mm:ss 的格式
+ *
+ * @param time 秒
+ * @return
+ */
+val decimalFormatMinute: DecimalFormat by lazy { DecimalFormat("00") }
+fun Int.formatMinuteTime():String {
+    val mm = decimalFormatMinute.format (this % 3600 / 60)
+    val ss = decimalFormatMinute.format (this % 60)
+    return "$mm:$ss"
 }

@@ -14,20 +14,20 @@ import com.blankj.utilcode.util.ToastUtils
  * </pre>
  */
 
-fun String.shortToast(gravity: Int = Gravity.CENTER){
+fun shortToast(content:String,gravity: Int = Gravity.CENTER){
     ToastUtils.make()
         .setBgColor(Color.parseColor("#FF000000"))
         .setTextColor(Color.parseColor("#FFFFFF"))
         .setGravity(gravity,0,100)
         .setDurationIsLong(false)
-        .show(this)
+        .show(content)
 }
 
-fun String.longToast(){
+fun longToast(content:String){
     ToastUtils.make()
         .setBgColor(Color.parseColor("#FF000000"))
         .setTextColor(Color.parseColor("#FFFFFF"))
         .setGravity(Gravity.CENTER,0,100)
         .setDurationIsLong(true)
-        .show(this)
+        .show(content)
 }
