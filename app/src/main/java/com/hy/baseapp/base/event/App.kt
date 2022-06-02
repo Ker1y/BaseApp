@@ -30,21 +30,23 @@ val appViewModel: AppViewModel by lazy { appViewModelInstance }
 val eventViewModel: EventViewModel by lazy { eventViewModelInstance }
 
 
+//ApplicationInstance
+lateinit var appInstance:BaseApp
+
 class App : BaseApp() {
 
     companion object {
-        lateinit var INSTANCE: BaseApp
         var mQnToken = ""
         var mQnPrefix = ""
 
-        val appViewModelInstance: AppViewModel by lazy { INSTANCE.getAppViewModelProvider()[AppViewModel::class.java] }
-        val eventViewModelInstance: EventViewModel by lazy { INSTANCE.getAppViewModelProvider()[EventViewModel::class.java] }
+        val appViewModelInstance: AppViewModel by lazy { appInstance.getAppViewModelProvider()[AppViewModel::class.java] }
+        val eventViewModelInstance: EventViewModel by lazy { appInstance.getAppViewModelProvider()[EventViewModel::class.java] }
     }
 
 
     override fun onCreate() {
         super.onCreate()
-        INSTANCE = this
+        appInstance = this
         setConfig()
     }
 
