@@ -1,6 +1,6 @@
 # BaseApp
- Android Template code，Includes some third library/kotlin expansion and utils class what i usually use.To agile develop for new project 
- 集成了自己常用的第三方库,扩展类,和工具类，便于新项目快速开发
+集成了自己常用的第三方库,扩展类,和工具类，便于新项目快速开发
+Android Template code，Includes some third library/kotlin expansion and utils class what i usually use.To agile develop for new project 
 
 ***Reference：***
 
