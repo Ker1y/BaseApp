@@ -29,7 +29,6 @@ val appViewModel: AppViewModel by lazy { appViewModelInstance }
 //Application全局的ViewModel，用于发送全局通知操作
 val eventViewModel: EventViewModel by lazy { eventViewModelInstance }
 
-
 //ApplicationInstance
 lateinit var appInstance:BaseApp
 
@@ -85,7 +84,7 @@ class App : BaseApp() {
             )
         }
 
-        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
+        SmartRefreshLayout.setDefaultRefreshFooterCreator { _, layout ->
             layout.setEnableFooterFollowWhenNoMoreData(true)
             layout.setEnableFooterTranslationContent(true)
             layout.setFooterHeight(50f)
@@ -94,7 +93,7 @@ class App : BaseApp() {
 //            NoStatusFooter(context).apply {
 //                setAccentColorId(R.color.colorTextPrimary)
 //                setTextTitleSize(16f)
-            ClassicsFooter(INSTANCE)
+            ClassicsFooter(appInstance)
 //            }
         }
     }

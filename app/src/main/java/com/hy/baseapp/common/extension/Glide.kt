@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.hy.baseapp.R
-import com.hy.baseapp.base.event.App
+import com.hy.baseapp.base.event.appInstance
 import com.hy.baseapp.common.utils.MaskTransformation
 import com.hy.baseapp.common.utils.RoundedCornerCenterCrop
 import me.hy.jetpackmvvm.ext.util.dp2px
@@ -37,7 +37,7 @@ fun ImageView.display(url: String) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         placeholder(R.drawable.glide_holder)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .transition(DrawableTransitionOptions().crossFade(500))
@@ -50,7 +50,7 @@ fun ImageView.display(file: File) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         placeholder(R.drawable.glide_holder)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(file)
         .thumbnail(0.5f)
         .apply(options)
@@ -64,7 +64,7 @@ fun ImageView.displayNoCache(url: String) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         placeholder(R.drawable.glide_holder)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .transition(DrawableTransitionOptions().crossFade(500))
@@ -76,7 +76,7 @@ fun ImageView.displayBg(url: String) {
     val options = RequestOptions().apply {
         placeholder(R.drawable.glide_holder)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .diskCacheStrategy(DiskCacheStrategy.DATA)
@@ -89,7 +89,7 @@ fun ImageView.displayThumbnail(url: String) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         placeholder(R.drawable.glide_holder)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .thumbnail(0.5f)
         .apply(options)
@@ -102,7 +102,7 @@ fun ImageView.displayOriginalSize(url: String) {
     val options = RequestOptions().apply {
         placeholder(R.drawable.glide_holder)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .override(Target.SIZE_ORIGINAL)
@@ -114,7 +114,7 @@ fun ImageView.displayOriginalSize(url: String,corners: Int) {
     val options = RequestOptions().apply {
         placeholder(R.drawable.glide_holder)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .thumbnail(0.5f)
         .apply(options)
@@ -129,14 +129,14 @@ fun ImageView.displayWithCache(url: String) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         placeholder(R.drawable.glide_holder)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .thumbnail(0.5f)
         .apply(options)
         .transition(DrawableTransitionOptions().crossFade()).into(this)
 }
 fun ImageView.displayWithCorner(url: String, corners:Int=8) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .placeholder(R.drawable.glide_holder)
         .transform(RoundedCorners(corners.dp2px()))
@@ -145,7 +145,7 @@ fun ImageView.displayWithCorner(url: String, corners:Int=8) {
 }
 
 fun ImageView.displayWithCorner(resourceID: Int, corners:Int=8) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .placeholder(R.drawable.glide_holder)
         .transform(RoundedCorners(corners.dp2px()))
@@ -154,7 +154,7 @@ fun ImageView.displayWithCorner(resourceID: Int, corners:Int=8) {
 }
 
 fun ImageView.displayWithCornerNoFade(resourceID: Int, corners:Int=8) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .placeholder(R.drawable.glide_holder)
         .transform(RoundedCorners(corners.dp2px()))
@@ -167,7 +167,7 @@ fun ImageView.displayWithCornerNoFade(resourceID: Int, corners:Int=8) {
  */
 fun ImageView.displayWithGranularCorners(url: String,
                                   topLeft:Float=0f, topRight:Float=0f, bottomRight:Float=0f, bottomLeft:Float=0f) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .placeholder(R.drawable.glide_holder)
         .transform(GranularRoundedCorners(topLeft, topRight, bottomRight, bottomLeft))
@@ -177,7 +177,7 @@ fun ImageView.displayWithGranularCorners(url: String,
 
 
 fun ImageView.displayCornersWithCenterCrop(url: String, corners:Int = 8) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
 //        .thumbnail(0.3f)
         .placeholder(R.drawable.glide_holder)
@@ -189,7 +189,7 @@ fun ImageView.displayCornersWithCenterCrop(url: String, corners:Int = 8) {
 }
 
 fun ImageView.displayCornersWithCenterCrop(url: String, corners:Int = 8,width: Int,height: Int) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .placeholder(R.drawable.glide_holder)
         .dontAnimate()
@@ -200,7 +200,7 @@ fun ImageView.displayCornersWithCenterCrop(url: String, corners:Int = 8,width: I
 }
 
 fun ImageView.displayCornersWithFitCenter(url: String, corners:Int =8) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .placeholder(R.drawable.glide_holder)
         .dontAnimate()
@@ -214,7 +214,7 @@ fun ImageView.displayCornersWithCenterCrop(@DrawableRes @RawRes resourceID: Int,
         diskCacheStrategy(DiskCacheStrategy.NONE)
     }
 
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .apply(options)
         .transform(CenterCrop(),RoundedCorners(corners.dp2px()))
@@ -223,7 +223,7 @@ fun ImageView.displayCornersWithCenterCrop(@DrawableRes @RawRes resourceID: Int,
 
 
 fun ImageView.displayFileWithCorners(path: String, corners: Int) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(File(path))
         .diskCacheStrategy(DiskCacheStrategy.DATA)
         .transform(RoundedCornerCenterCrop(corners.dp2px())).into(this)
@@ -237,7 +237,7 @@ fun ImageView.displayUriWithCorners(path: String, corners: Int) {
         fitCenter()
     }
 
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(Uri.fromFile(File(path)))
         .centerCrop()
         .apply(options)
@@ -252,7 +252,7 @@ fun ImageView.displayUriWithCorners(path: String, corners: Int,width: Int,height
         fitCenter()
     }
 
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(Uri.fromFile(File(path)))
         .centerCrop()
         .override(width,height)
@@ -267,7 +267,7 @@ fun ImageView.displayCircleTransition(url: String) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         transform(CircleCrop())
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .diskCacheStrategy(DiskCacheStrategy.DATA)
@@ -281,7 +281,7 @@ fun ImageView.displayCircleTransition(url: String, width: Int, height: Int) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         transform(CircleCrop())
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .override(width.dp2px(),height)
@@ -297,7 +297,7 @@ fun ImageView.displayCircle(url: String) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         transform(CircleCrop())
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .diskCacheStrategy(DiskCacheStrategy.DATA)
@@ -313,7 +313,7 @@ fun ImageView.displayCircle(url: String, width:Int, height:Int,thumbnail:Float=0
         diskCacheStrategy(DiskCacheStrategy.DATA)
         transform(CircleCrop())
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .override(width.dp2px(),height.dp2px())
@@ -329,7 +329,7 @@ fun ImageView.displayCircle(url: String,thumbnail:Float=0.8f) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         transform(CircleCrop())
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .thumbnail(thumbnail)
@@ -341,7 +341,7 @@ fun ImageView.displayCircle(url: String,thumbnail:Float=0.8f) {
 
 
 fun ImageView.displayFileWithCircle(path: String) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(path)
         .placeholder(R.drawable.glide_holder)
         .thumbnail(0.5f)
@@ -352,7 +352,7 @@ fun ImageView.displayFileWithCircle(path: String) {
 
 
 fun ImageView.displayFileWithCircle(file: File) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(file)
         .thumbnail(0.5f)
         .transform(CircleCrop())
@@ -365,7 +365,7 @@ fun ImageView.displayFile(path: String) {
         diskCacheStrategy(DiskCacheStrategy.DATA)
         fitCenter()
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(File(path))
         .apply(options)
         .diskCacheStrategy(DiskCacheStrategy.DATA)
@@ -377,7 +377,7 @@ fun ImageView.displayFile(file: File) {
     val options = RequestOptions().apply {
         diskCacheStrategy(DiskCacheStrategy.DATA)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(file)
         .apply(options)
         .thumbnail(0.5f)
@@ -388,7 +388,7 @@ fun ImageView.displayFileWithCorner(path: String,corners: Int= 8) {
     val options = RequestOptions().apply {
         diskCacheStrategy(DiskCacheStrategy.DATA)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(File(path))
         .apply(options)
         .thumbnail(0.5f)
@@ -398,7 +398,7 @@ fun ImageView.displayFileWithCorner(path: String,corners: Int= 8) {
 
 
 fun ImageView.displayFileFitCenter(path: String,corners: Int = 8) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(File(path))
         .thumbnail(0.5f)
         .transform(FitCenter(),RoundedCorners(corners.dp2px()))
@@ -407,7 +407,7 @@ fun ImageView.displayFileFitCenter(path: String,corners: Int = 8) {
 }
 
 fun ImageView.displayFileFitCenter(path: String,size:Size,corners: Int = 8) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(File(path))
         .transform(FitCenter(),RoundedCorners(corners.dp2px()))
         .override(size.width,size.height)
@@ -416,7 +416,7 @@ fun ImageView.displayFileFitCenter(path: String,size:Size,corners: Int = 8) {
 }
 
 fun ImageView.displayFileCenterCrop(path: String,corners: Int = 8.dp2px()) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(File(path))
         .transform(RoundedCornerCenterCrop(corners))
         .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -429,7 +429,7 @@ fun ImageView.displayWithCircle(@RawRes @DrawableRes resId: Int) {
         transform(CircleCrop())
         fitCenter()
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resId)
         .apply(options)
         .transition(DrawableTransitionOptions().crossFade())
@@ -440,7 +440,7 @@ fun ImageView.displayWithCircle(@RawRes @DrawableRes resId: Int) {
 }
 
 fun ImageView.display(@DrawableRes @RawRes resourceID: Int) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .fitCenter()
         .diskCacheStrategy(DiskCacheStrategy.DATA)
@@ -448,7 +448,7 @@ fun ImageView.display(@DrawableRes @RawRes resourceID: Int) {
 }
 
 fun ImageView.display(@DrawableRes @RawRes resourceID: Int,width: Int,height: Int) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .fitCenter()
         .override(width,height)
@@ -457,7 +457,7 @@ fun ImageView.display(@DrawableRes @RawRes resourceID: Int,width: Int,height: In
 }
 
 fun ImageView.displayResourceCorner(@DrawableRes @RawRes resourceID: Int,corners: Int=8) {
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .fitCenter()
         .transform(RoundedCorners(corners))
@@ -472,7 +472,7 @@ fun ImageView.displayResourceCenterCropCorner(@DrawableRes @RawRes resourceID: I
         diskCacheStrategy(DiskCacheStrategy.DATA)
     }
 
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .apply(options)
         .transform(CenterCrop(),RoundedCorners(corners.dp2px()))
@@ -486,7 +486,7 @@ fun ImageView.displayResourceFitCenterCorner(@DrawableRes @RawRes resourceID: In
         diskCacheStrategy(DiskCacheStrategy.DATA)
     }
 
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .apply(options)
         .transform(FitCenter(),RoundedCorners(corners.dp2px()))
@@ -504,7 +504,7 @@ fun ImageView.loadWithMask(
         fitCenter()
     }
 
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .transform(MaskTransformation(context, maskID))
         .apply(options)
@@ -521,7 +521,7 @@ fun ImageView.loadWithMask(
         fitCenter()
     }
 
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .transform(MaskTransformation(context, maskID))
         .apply(options)
@@ -539,12 +539,12 @@ fun ImageView.displayWithMask(
         diskCacheStrategy(DiskCacheStrategy.DATA)
     }
 
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(url)
         .apply(options)
         .transform(CenterCrop(),RoundedCorners(corners.dp2px()),
             MaskTransformation(
-                App.INSTANCE,
+                appInstance,
                 maskID
             )
         )
@@ -557,7 +557,7 @@ fun ImageView.displayBlur(@DrawableRes @RawRes resourceID: Int){
         diskCacheStrategy(DiskCacheStrategy.DATA)
         placeholder(R.drawable.glide_holder)
     }
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .load(resourceID)
         .thumbnail(0.5f)
         .apply(options)
@@ -566,7 +566,7 @@ fun ImageView.displayBlur(@DrawableRes @RawRes resourceID: Int){
 }
 
 fun ImageView.displayVideoCoverImage(url:String,corners: Int = 8){
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .setDefaultRequestOptions(
             RequestOptions()
                 .frame(1000000)
@@ -581,7 +581,7 @@ fun ImageView.displayVideoCoverImage(url:String,corners: Int = 8){
 
 
 fun ImageView.clearGlide(){
-    Glide.with(App.INSTANCE)
+    Glide.with(appInstance)
         .clear(this)
 }
 

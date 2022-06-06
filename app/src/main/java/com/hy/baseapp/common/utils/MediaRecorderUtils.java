@@ -1,11 +1,11 @@
 package com.hy.baseapp.common.utils;
 
+import static com.hy.baseapp.base.event.AppKt.appInstance;
+
 import android.content.Context;
 import android.media.MediaRecorder;
 import android.os.Handler;
 import android.util.Log;
-
-import com.hy.baseapp.base.event.App;
 
 import java.io.File;
 import java.io.IOException;
@@ -222,7 +222,7 @@ public class MediaRecorderUtils {
    */
   private String getExternalDir() {
     //新建录音存储的文件夹
-    String path = App.INSTANCE.getCacheDir().getAbsolutePath() + File.separator;
+    String path = appInstance.getCacheDir().getAbsolutePath() + File.separator;
 
     //如果目录不存在,创建目录.
     File file = new File(path);

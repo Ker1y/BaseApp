@@ -10,6 +10,7 @@ import android.webkit.WebView
 import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.AppUtils
 import com.hy.baseapp.base.event.App
+import com.hy.baseapp.base.event.appInstance
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import java.io.BufferedReader
@@ -60,11 +61,11 @@ fun countDownCoroutines(total:Int,onTick:(Int)->Unit,onFinish:()->Unit,
 fun getChannelName(): String {
     var channelName: String? = null
     try {
-        val packageManager = App.INSTANCE.packageManager
+        val packageManager = appInstance.packageManager
         if (packageManager != null) {
             //注意此处为ApplicationInfo 而不是 ActivityInfo,因为友盟设置的meta-data是在application标签中，而不是activity标签中，所以用ApplicationInfo
             val applicationInfo = packageManager.getApplicationInfo(
-                App.INSTANCE.packageName,
+                appInstance.packageName,
                 PackageManager.GET_META_DATA
             )
             if (applicationInfo.metaData != null) {

@@ -15,7 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.hy.baseapp.R
-import com.hy.baseapp.base.event.App
+import com.hy.baseapp.base.event.appInstance
 import me.hy.jetpackmvvm.ext.util.dp2px
 import me.hy.jetpackmvvm.ext.view.EXPAND_DEFAULT_SIZE
 import me.hy.jetpackmvvm.ext.view.click
@@ -67,7 +67,7 @@ object CustomBindAdapter {
     @BindingAdapter(value = ["imageUrlCorner"])
     @JvmStatic
     fun imageUrlCorner(view: ImageView, url: String?) {
-        Glide.with(App.INSTANCE)
+        Glide.with(appInstance)
             .load(url)
             .placeholder(R.drawable.glide_holder)
             .transform(RoundedCorners(8.dp2px()))
@@ -87,7 +87,7 @@ object CustomBindAdapter {
             diskCacheStrategy(DiskCacheStrategy.DATA)
             transform(CircleCrop())
         }
-        Glide.with(App.INSTANCE)
+        Glide.with(appInstance)
             .load(url)
             .apply(options)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
@@ -103,7 +103,7 @@ object CustomBindAdapter {
             diskCacheStrategy(DiskCacheStrategy.DATA)
             placeholder(R.drawable.glide_holder)
         }
-        Glide.with(App.INSTANCE)
+        Glide.with(appInstance)
             .load(url)
             .thumbnail(0.5f)
             .apply(options)
