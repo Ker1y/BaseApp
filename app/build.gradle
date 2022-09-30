@@ -103,6 +103,11 @@ dependencies {
     implementation Depend.backgroundLibrary
     implementation Depend.baseRecyclerViewAdapterHelper
     implementation Retrofit.retrofitAdapter
+    implementation Depend.brv
+    implementation Depend.pictureSelector
+    implementation Depend.pictureSelectorCompress
+    implementation Depend.uCrop
+
     //特定功能库
     implementation Depend.materialDialogs
     implementation Depend.glide
