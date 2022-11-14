@@ -96,7 +96,6 @@ dependencies {
     //三方基础功能库
     implementation Android.flexbox
     implementation Depend.immersionBar
-    implementation Depend.immersionBarComponents
     implementation Depend.immersionBarKtx
     implementation Depend.mmkv
     implementation Depend.autoSize

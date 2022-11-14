@@ -9,6 +9,7 @@ import android.view.View
 import android.webkit.WebView
 import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.LanguageUtils
 import com.hy.baseapp.base.event.App
 import com.hy.baseapp.base.event.appInstance
 import kotlinx.coroutines.*
@@ -118,4 +119,8 @@ fun fixWebViewDataDirectoryBug() {
             WebView.setDataDirectorySuffix(processName)
         }
     }
+}
+
+fun isLocalLanguageChinese():Boolean{
+    return LanguageUtils.getSystemLanguage().language == "ch" ||  LanguageUtils.getSystemLanguage().language == "ZN"
 }

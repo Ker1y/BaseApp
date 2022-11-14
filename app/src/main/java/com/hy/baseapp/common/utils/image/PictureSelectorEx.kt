@@ -2,6 +2,9 @@ package com.hy.baseapp.common.utils.image
 
 import android.app.Activity
 import androidx.core.content.ContextCompat
+import com.hy.baseapp.R
+import com.hy.baseapp.base.event.appInstance
+import com.hy.baseapp.common.utils.isLocalLanguageChinese
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.*
 import com.luck.picture.lib.engine.CompressFileEngine
