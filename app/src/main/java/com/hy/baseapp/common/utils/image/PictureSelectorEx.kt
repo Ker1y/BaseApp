@@ -206,7 +206,6 @@ fun Activity.openSystemGallery(mimeType: Int,selectionMode:Int, callBack: (Array
  * @param isDirectReturnSingle 单选时是否立即返回
  * @param isAutoVideoPlay  预览视频是否自动播放
  * @param isLoopAutoVideoPlay 预览视频是否循环播放
- * @param isAllFilesAccessOf11  Android 11下未申请权限时，进入系统设置所有权限界面
  * @param isFilterSizeDuration 过滤视频小于1秒和文件小于1kb
  */
 
@@ -240,7 +239,6 @@ private fun Activity.openGallery(
     isDirectReturnSingle: Boolean = false,
     isAutoVideoPlay: Boolean = true,
     isLoopAutoVideoPlay: Boolean = false,
-    isAllFilesAccessOf11: Boolean = true,
     isFilterSizeDuration: Boolean = true,
     callBack: (ArrayList<LocalMedia>?) -> Unit = {}
 ) {
@@ -274,7 +272,6 @@ private fun Activity.openGallery(
         isDirectReturnSingle(isDirectReturnSingle)
         isLoopAutoVideoPlay(isLoopAutoVideoPlay)
         isAutoVideoPlay(isAutoVideoPlay)
-        isAllFilesAccessOf11(isAllFilesAccessOf11)
         isFilterSizeDuration(isFilterSizeDuration)
     }.forResult(object : OnResultCallbackListener<LocalMedia> {
         override fun onResult(result: ArrayList<LocalMedia>?) {
