@@ -43,7 +43,6 @@ class ImageFileCropEngine : CropFileEngine {
     ) {
         val options: UCrop.Options = buildOptions()
         val uCrop: UCrop = UCrop.of(srcUri!!, destinationUri!!, dataSource)
-        uCrop.withOptions(options)
         uCrop.setImageEngine(object : UCropImageEngine {
             override fun loadImage(context: Context?, url: String?, imageView: ImageView?) {
                 if (!assertValidRequest(context)) {
@@ -72,10 +71,10 @@ class ImageFileCropEngine : CropFileEngine {
                             call?.onCall(null)
                         }
                     })
-                uCrop.start(fragment.requireActivity(), fragment, requestCode)
             }
-        }
-        )
+        })
+        uCrop.withOptions(options)
+        uCrop.start(fragment.requireActivity(), fragment, requestCode)
     }
 
     /**
