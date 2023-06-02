@@ -10,7 +10,7 @@ package com.hy.base.plugin
 
 object Versions {
     const val retrofit = "2.9.0"
-    const val okhttpLogging = "4.9.0"
+    const val okhttp = "4.10.0"
     const val appcompat = "1.4.1"
     const val coreKtx = "1.7.0"
     const val constraintlayout = "2.1.3"
@@ -148,7 +148,8 @@ object Retrofit {
     const val runtime = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val mock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
-    const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttpLogging}"
+    const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
+    const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     const val retrofitAdapter = "com.github.akarnokd:rxjava3-retrofit-adapter:${Versions.retrofitAdapter}"
     const val urlManager = "me.jessyan:retrofit-url-manager:${Versions.urlManager}"
 }

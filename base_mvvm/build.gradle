@@ -74,7 +74,9 @@ dependencies {
     //retrofit
     api Retrofit.runtime
     api Retrofit.gson
+    api Retrofit.okhttp
     api Depend.cookieJar
+
     //动态替换BaseUrl库 使用可参考 https://github.com/JessYanCoding/RetrofitUrlManager
     api Retrofit.urlManager
     //工具类
