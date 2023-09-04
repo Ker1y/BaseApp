@@ -49,7 +49,7 @@ object Versions {
     const val autosize = "1.2.1"
     const val backgroundLibrary = "1.7.5"
     const val baseRecyclerViewAdapterHelper = "3.0.6"
-    const val brv = "BRV:1.3.85"
+    const val brv = "BRV:1.5.2"
     const val retrofitAdapter = "3.0.0"
     const val materialDialogs = "3.3.0"
     const val glide = "4.12.0"
