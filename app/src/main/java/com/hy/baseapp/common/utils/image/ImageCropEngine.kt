@@ -1,4 +1,4 @@
-package com.ifun.meeting.common.utils.image
+package com.hy.baseapp.common.utils.image
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,9 +6,6 @@ import android.net.Uri
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.hy.baseapp.common.utils.image.ImageLoaderUtils
-import com.hy.baseapp.common.utils.image.buildOptions
-import com.hy.baseapp.common.utils.image.getSandboxPath
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.engine.CropEngine
 import com.luck.picture.lib.entity.LocalMedia

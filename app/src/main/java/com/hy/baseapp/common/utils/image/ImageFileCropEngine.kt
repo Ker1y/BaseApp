@@ -15,7 +15,6 @@ import com.bumptech.glide.request.transition.Transition
 import com.hy.baseapp.R
 import com.hy.baseapp.base.event.appInstance
 import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.config.PictureSelectionConfig
 import com.luck.picture.lib.engine.CropFileEngine
 import com.luck.picture.lib.utils.StyleUtils
 import com.yalantis.ucrop.UCrop
@@ -96,8 +95,8 @@ class ImageFileCropEngine : CropFileEngine {
         options.isForbidCropGifWebp(false)
         options.isForbidSkipMultipleCrop(false)
         options.setMaxScaleMultiplier(100f)
-        if (PictureSelectionConfig.selectorStyle != null && PictureSelectionConfig.selectorStyle.selectMainStyle.statusBarColor != 0) {
-            val mainStyle = PictureSelectionConfig.selectorStyle.selectMainStyle
+        if (selectorStyle != null && selectorStyle.selectMainStyle.statusBarColor != 0) {
+            val mainStyle = selectorStyle.selectMainStyle
             val isDarkStatusBarBlack = mainStyle.isDarkStatusBarBlack
             val statusBarColor = mainStyle.statusBarColor
             options.isDarkStatusBarBlack(isDarkStatusBarBlack)
@@ -118,7 +117,7 @@ class ImageFileCropEngine : CropFileEngine {
                     )
                 )
             }
-            val titleBarStyle = PictureSelectionConfig.selectorStyle.titleBarStyle
+            val titleBarStyle = selectorStyle.titleBarStyle
             if (StyleUtils.checkStyleValidity(titleBarStyle.titleTextColor)) {
                 options.setToolbarWidgetColor(titleBarStyle.titleTextColor)
             } else {
@@ -200,9 +199,11 @@ class ImageFileCropEngine : CropFileEngine {
                 0 -> {
                     aspectRatios[i] = AspectRatio("16:9", 16f, 9f)
                 }
+
                 1 -> {
                     aspectRatios[i] = AspectRatio("3:2", 3f, 2f)
                 }
+
                 else -> {
                     aspectRatios[i] = AspectRatio("原始比例", 0f, 0f)
                 }

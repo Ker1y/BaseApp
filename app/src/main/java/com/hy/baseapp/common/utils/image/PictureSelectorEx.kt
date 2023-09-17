@@ -1,18 +1,23 @@
 package com.hy.baseapp.common.utils.image
 
 import android.app.Activity
+import android.content.Context
 import androidx.core.content.ContextCompat
 import com.hy.baseapp.R
 import com.hy.baseapp.base.event.appInstance
 import com.hy.baseapp.common.utils.isLocalLanguageChinese
 import com.luck.picture.lib.basic.PictureSelector
-import com.luck.picture.lib.config.*
+import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.config.SelectMimeType
+import com.luck.picture.lib.config.SelectModeConfig
+import com.luck.picture.lib.config.VideoQuality
 import com.luck.picture.lib.engine.CompressFileEngine
 import com.luck.picture.lib.engine.CropFileEngine
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnExternalPreviewEventListener
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.luck.picture.lib.language.LanguageConfig
+import com.luck.picture.lib.style.PictureSelectorStyle
 import com.luck.picture.lib.utils.StyleUtils
 import com.yalantis.ucrop.UCrop
 import java.io.File
@@ -31,7 +36,6 @@ import java.io.File
  */
 
 
-
 /**
  * 打开相册，允许裁剪，允许拍照，单选
  */
@@ -48,12 +52,11 @@ fun Activity.openGallerySingleImage(callBack: (ArrayList<LocalMedia>?) -> Unit) 
 }
 
 
-
 /**
  * 打开相册，允许裁剪，允许拍照
  * @param num 最大选择数量
  */
-fun Activity.openGalleryImage(num : Int = 5, callBack: (ArrayList<LocalMedia>?) -> Unit) {
+fun Activity.openGalleryImage(num: Int = 5, callBack: (ArrayList<LocalMedia>?) -> Unit) {
     openGallery(
         SelectMimeType.ofImage(),
         selectionMode = SelectModeConfig.MULTIPLE,
@@ -69,7 +72,7 @@ fun Activity.openGalleryImage(num : Int = 5, callBack: (ArrayList<LocalMedia>?) 
  * 打开相册，允许裁剪，不允许拍照
  * @param num 最大选择数量
  */
-fun Activity.openGalleryImageNoTake(num : Int = 5, callBack: (ArrayList<LocalMedia>?) -> Unit) {
+fun Activity.openGalleryImageNoTake(num: Int = 5, callBack: (ArrayList<LocalMedia>?) -> Unit) {
     openGallery(
         SelectMimeType.ofImage(),
         selectionMode = SelectModeConfig.MULTIPLE,
@@ -85,7 +88,7 @@ fun Activity.openGalleryImageNoTake(num : Int = 5, callBack: (ArrayList<LocalMed
  * 打开相册，选择视频
  * @param num 最大选择数量
  */
-fun Activity.openGalleryVideoNoTake(num : Int = 5, callBack: (ArrayList<LocalMedia>?) -> Unit) {
+fun Activity.openGalleryVideoNoTake(num: Int = 5, callBack: (ArrayList<LocalMedia>?) -> Unit) {
     openGallery(
         SelectMimeType.ofVideo(),
         selectionMode = SelectModeConfig.MULTIPLE,
@@ -103,50 +106,51 @@ fun Activity.openGalleryVideoNoTake(num : Int = 5, callBack: (ArrayList<LocalMed
  * @param type 类型
  * @see SelectMimeType
  */
-fun Activity.getMediaDataSource(type:Int,callBack:(MutableList<LocalMedia>)->Unit){
+fun Activity.getMediaDataSource(type: Int, callBack: (MutableList<LocalMedia>) -> Unit) {
     PictureSelector.create(this).dataSource(type).obtainMediaData {
         callBack.invoke(it)
     }
 }
 
 
-
 /**
  * 打开系统相册
  * 仅限图片，单选，
  */
-fun Activity.openSystemGalleryImageSingle(callBack: (ArrayList<LocalMedia>?) -> Unit){
-    openSystemGallery(SelectMimeType.ofImage(),SelectModeConfig.SINGLE,callBack)
+fun Activity.openSystemGalleryImageSingle(callBack: (ArrayList<LocalMedia>?) -> Unit) {
+    openSystemGallery(SelectMimeType.ofImage(), SelectModeConfig.SINGLE, callBack)
 }
+
 /**
  * 打开系统相機
  *
  */
-fun Activity.openCamera(callBack: (ArrayList<LocalMedia>?) -> Unit){
+fun Activity.openCamera(callBack: (ArrayList<LocalMedia>?) -> Unit) {
     PictureSelector.create(this)
         .openCamera(SelectMimeType.ofImage())
-        .forResult(object :OnResultCallbackListener<LocalMedia>{
-        override fun onResult(result: java.util.ArrayList<LocalMedia>?) {
-            callBack.invoke(result)
-        }
+        .forResult(object : OnResultCallbackListener<LocalMedia> {
+            override fun onResult(result: java.util.ArrayList<LocalMedia>?) {
+                callBack.invoke(result)
+            }
 
-        override fun onCancel() {
+            override fun onCancel() {
 
-        }
+            }
 
-    })
+        })
 }
+
 /**
  * 图片预览
  *
  */
-fun Activity.openPreview(position : Int,imgList: java.util.ArrayList<LocalMedia>?){
+fun Activity.openPreview(position: Int, imgList: java.util.ArrayList<LocalMedia>?) {
     PictureSelector.create(this)
         .openPreview()
         .setImageEngine(GlideEngine.createGlideEngine())
         .setExternalPreviewEventListener(object : OnExternalPreviewEventListener {
             override fun onPreviewDelete(position: Int) {}
-            override fun onLongPressDownload(media: LocalMedia): Boolean {
+            override fun onLongPressDownload(context: Context?, media: LocalMedia?): Boolean {
                 return false
             }
         }).startActivityPreview(position, true, imgList)
@@ -157,7 +161,11 @@ fun Activity.openPreview(position : Int,imgList: java.util.ArrayList<LocalMedia>
  * @param mimeType 相册类型，图片/视频
  *
  */
-fun Activity.openSystemGallery(mimeType: Int,selectionMode:Int, callBack: (ArrayList<LocalMedia>?) -> Unit) {
+fun Activity.openSystemGallery(
+    mimeType: Int,
+    selectionMode: Int,
+    callBack: (ArrayList<LocalMedia>?) -> Unit
+) {
     PictureSelector.create(this).openSystemGallery(mimeType)
         .setSkipCropMimeType(*getNotSupportCrop())
         .setCompressEngine(ImageFileCompressEngine())
@@ -172,6 +180,7 @@ fun Activity.openSystemGallery(mimeType: Int,selectionMode:Int, callBack: (Array
         })
 }
 
+val selectorStyle = PictureSelectorStyle()
 
 /**
  *
@@ -208,7 +217,6 @@ fun Activity.openSystemGallery(mimeType: Int,selectionMode:Int, callBack: (Array
  * @param isLoopAutoVideoPlay 预览视频是否循环播放
  * @param isFilterSizeDuration 过滤视频小于1秒和文件小于1kb
  */
-
 private fun Activity.openGallery(
     mimeType: Int,
     language: Int = if (isLocalLanguageChinese()) LanguageConfig.CHINESE else LanguageConfig.ENGLISH,
@@ -242,7 +250,8 @@ private fun Activity.openGallery(
     isFilterSizeDuration: Boolean = true,
     callBack: (ArrayList<LocalMedia>?) -> Unit = {}
 ) {
-        PictureSelector.create(this).openGallery(mimeType).apply {
+    setDefaultStyle(this)
+    PictureSelector.create(this).openGallery(mimeType).apply {
         setImageEngine(GlideEngine.createGlideEngine())
         setLanguage(language)
         if (cropEngine != null) setCropEngine(cropEngine)
@@ -282,7 +291,43 @@ private fun Activity.openGallery(
     })
 }
 
-
+/**
+ * 设置主题
+ */
+private fun setDefaultStyle(context: Activity) {
+//    context.also {
+//        val  whiteTitleBarStyle = TitleBarStyle().apply {
+//            titleBackgroundColor = getColor(it, R.color.white)
+//            titleDrawableRightResource = R.drawable.ic_orange_arrow_down
+//            titleLeftBackResource = R.drawable.ps_ic_black_back
+//            titleTextColor = getColor(it, R.color.ps_color_black)
+//            titleCancelTextColor = getColor(it, R.color.ps_color_53575e)
+//            isDisplayTitleBarLine = true
+//        }
+//        val whiteBottomNavBarStyle = BottomNavBarStyle().apply {
+//            bottomNarBarBackgroundColor = Color.parseColor("#EEEEEE")
+//            bottomPreviewSelectTextColor = getColor(it, R.color.ps_color_53575e)
+//            bottomPreviewNormalTextColor = getColor(it, R.color.ps_color_9b)
+//            bottomPreviewSelectTextColor = getColor(it,R.color.ps_color_fa632d)
+//            isCompleteCountTips = false
+//            bottomEditorTextColor = getColor(it, R.color.ps_color_53575e)
+//            bottomOriginalTextColor = getColor(it, R.color.ps_color_53575e)
+//        }
+//        val selectMainStyle = SelectMainStyle().apply {
+//            statusBarColor = getColor(it, R.color.ps_color_white)
+//            isDarkStatusBarBlack = true
+//            selectNormalTextColor = getColor(it, R.color.ps_color_9b)
+//            selectTextColor = getColor(it, R.color.ps_color_fa632d)
+//            previewSelectBackground = R.drawable.ps_demo_white_preview_selector
+//            selectBackground = R.drawable.ps_checkbox_selector
+//            setSelectText(R.string.ps_done_front_num)
+//            mainListBackgroundColor = getColor(it, R.color.ps_color_white);
+//        }
+//        style.titleBarStyle = whiteTitleBarStyle
+//        style.bottomBarStyle = whiteBottomNavBarStyle
+//        style.selectMainStyle = selectMainStyle
+//    }
+}
 
 
 /**
@@ -304,8 +349,8 @@ fun buildOptions(): UCrop.Options {
     options.isForbidCropGifWebp(false)
     options.isForbidSkipMultipleCrop(false)
     options.setMaxScaleMultiplier(100f)
-    if (PictureSelectionConfig.selectorStyle != null && PictureSelectionConfig.selectorStyle.selectMainStyle.statusBarColor != 0) {
-        val mainStyle = PictureSelectionConfig.selectorStyle.selectMainStyle
+    if (selectorStyle != null && selectorStyle.selectMainStyle.statusBarColor != 0) {
+        val mainStyle = selectorStyle.selectMainStyle
         val isDarkStatusBarBlack = mainStyle.isDarkStatusBarBlack
         val statusBarColor = mainStyle.statusBarColor
         options.isDarkStatusBarBlack(isDarkStatusBarBlack)
@@ -326,7 +371,7 @@ fun buildOptions(): UCrop.Options {
                 )
             )
         }
-        val titleBarStyle = PictureSelectionConfig.selectorStyle.titleBarStyle
+        val titleBarStyle = selectorStyle.titleBarStyle
         if (StyleUtils.checkStyleValidity(titleBarStyle.titleTextColor)) {
             options.setToolbarWidgetColor(titleBarStyle.titleTextColor)
         } else {

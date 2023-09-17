@@ -63,7 +63,7 @@ object Versions {
     const val urlManager = "1.4.0"
     const val utilCodex = "1.31.0"
     const val viewPager2 = "1.0.0"
-    const val pictureSelector = "v3.10.7"
+    const val pictureSelector = "v3.11.1"
     const val pictureSelectorCompress = "v3.10.7"
     const val uCrop = "v3.10.7"
     const val camerax = "v3.10.4"
