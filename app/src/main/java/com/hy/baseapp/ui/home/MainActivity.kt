@@ -21,7 +21,7 @@ class MainActivity : BaseActivity<HomeViewModel,ActivityMainBinding>() {
         mDataBind.button.click {
             requestImagePermission {
                 openGalleryImage {
-                    LogUtils.d("$it")
+                    LogUtils.d("${it?.get(0)?.availablePath}")
                 }
             }
         }
