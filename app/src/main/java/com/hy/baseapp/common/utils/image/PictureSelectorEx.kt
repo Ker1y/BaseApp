@@ -150,7 +150,7 @@ fun Activity.openPreview(position: Int, imgList: java.util.ArrayList<LocalMedia>
         .setImageEngine(GlideEngine.createGlideEngine())
         .setExternalPreviewEventListener(object : OnExternalPreviewEventListener {
             override fun onPreviewDelete(position: Int) {}
-            override fun onLongPressDownload(media: LocalMedia?): Boolean {
+            override fun onLongPressDownload(context: Context?, media: LocalMedia?): Boolean {
                 return false
             }
         }).startActivityPreview(position, true, imgList)

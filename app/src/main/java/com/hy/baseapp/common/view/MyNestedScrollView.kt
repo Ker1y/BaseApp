@@ -29,7 +29,7 @@ open class MyNestedScrollView(context: Context, attrs: AttributeSet?) : NestedSc
         cantScrollRegion = height
     }
 
-    override fun onTouchEvent(ev: MotionEvent?): Boolean {
+    override fun onTouchEvent(ev: MotionEvent): Boolean {
         if(canScroll) {
             try {
                 return super.onTouchEvent(ev)

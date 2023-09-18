@@ -23,7 +23,7 @@ ext {
     targetSdkVersion = 33
     versionCode = 1
     versionName = "1.0.0"
-    kotlin_version = "1.5.21"
+    kotlin_version = "1.7.20"
     compileSdkVersion = 33
     buildToolsVersion = '30.0.3'
 }

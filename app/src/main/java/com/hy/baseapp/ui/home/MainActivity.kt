@@ -2,13 +2,9 @@ package com.hy.baseapp.ui.home
 
 import android.os.Bundle
 import com.blankj.utilcode.util.LogUtils
-import com.hjq.permissions.OnPermissionCallback
-import com.hjq.permissions.Permission
-import com.hjq.permissions.XXPermissions
 import com.hy.baseapp.base.BaseActivity
-import com.hy.baseapp.common.extension.requestImagePermission
+import com.hy.baseapp.common.extension.requestPermissions
 import com.hy.baseapp.common.utils.image.openGalleryImage
-import com.hy.baseapp.common.utils.image.openSystemGalleryImageSingle
 import com.hy.baseapp.databinding.ActivityMainBinding
 import com.hy.baseapp.ui.viewmodel.HomeViewModel
 import me.hy.jetpackmvvm.ext.view.click
@@ -19,7 +15,7 @@ class MainActivity : BaseActivity<HomeViewModel,ActivityMainBinding>() {
     }
     override fun createObserver() {
         mDataBind.button.click {
-            requestImagePermission {
+            requestPermissions {
                 openGalleryImage {
                     LogUtils.d("${it?.get(0)?.availablePath}")
                 }
