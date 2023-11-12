@@ -10,18 +10,19 @@ package com.hy.base.plugin
 
 object Versions {
     const val retrofit = "2.9.0"
-    const val okhttp = "4.10.0"
-    const val appcompat = "1.4.1"
+    const val okhttp = "4.11.0"
+    const val appcompat = "1.6.1"
     const val coreKtx = "1.9.0"
     const val constraintlayout = "2.1.3"
     const val paging = "3.0.0-alpha02"
     const val timber = "4.7.1"
-    const val kotlin = "1.7.1"
+    const val kotlin = "1.9.0"
     const val kotlinCoroutinesCore = "1.7.3"
-    const val kotlinCoroutinesAndroid = "1.4.0"
+    const val kotlinCoroutinesAndroid = "1.6.0"
     const val koin = "2.1.5"
     const val work = "2.2.0"
-    const val room = "2.3.0-alpha01"
+    const val room = "2.5.0"
+    const val splash = "1.0.0"
     const val cardview = "1.0.0"
     const val recyclerview = "1.0.0"
     const val fragment = "1.4.1"
@@ -31,7 +32,6 @@ object Versions {
     const val junitExt = "1.1.3"
     const val espressoCore = "3.4.0"
     const val jDatabinding = "1.0.4"
-    const val progressview = "1.0.2"
     const val runtime = "1.1.0"
     const val hit = "2.28-alpha"
     const val hitViewModule = "1.0.0-alpha01"
@@ -41,7 +41,7 @@ object Versions {
     const val bugly = "4.0.4"
     const val ktkitSnapshot = "1.0.0-SNAPSHOT"
     const val ktkit = "1.0.0"
-    const val lifecycleVersion = "2.4.1"
+    const val lifecycleVersion = "2.5.1"
     const val lifecycleExtensions = "2.2.0"
     const val flexbox = "3.0.0"
     const val immersionBar = "3.2.2"
@@ -49,16 +49,19 @@ object Versions {
     const val autosize = "1.2.1"
     const val backgroundLibrary = "1.7.5"
     const val baseRecyclerViewAdapterHelper = "3.0.6"
-    const val brv = "BRV:1.5.2"
+    const val brv = "BRV:1.5.5"
+    const val net = "Net:3.6.3"
+    const val span = "spannablex:1.0.4"
+    const val toolTip = "Tooltip:1.2.3"
     const val retrofitAdapter = "3.0.0"
     const val materialDialogs = "3.3.0"
-    const val glide = "4.12.0"
-    const val basePopup = "3.1.7"
+    const val glide = "4.16.0"
+    const val basePopup = "3.2.1"
     const val xxPermissions = "18.3"
     const val smartRefreshLayout = "2.0.5"
     const val gifDrawable = "1.2.6"
-    const val unPeekLiveData = "7.2.0-beta1"
-    const val navigation = "2.4.2"
+    const val unPeekLiveData = "7.8.0"
+    const val navigation = "2.5.3"
     const val cookieJar = "v1.0.1"
     const val urlManager = "1.4.0"
     const val utilCodex = "1.31.0"
@@ -69,6 +72,14 @@ object Versions {
     const val camerax = "v3.11.1"
     const val tencentTbs = "tbssdk:44216"
     const val rWidget = "androidx.v0.0.4"
+    const val moshi = "moshi-kotlin:1.14.0"
+    const val stateLayout = "StateLayout:1.4.2"
+    const val googleAuth = "play-services-auth:20.7.0"
+    const val emoji = "0.18.0-SNAPSHOT"
+    const val indicator = "1.1.6"
+    const val progressBar = "2.2.1"
+    const val gridLayoutManager = "1.0.6"
+    const val spiderMan = "spiderman:v1.1.9"
 }
 
 object AndroidX {
@@ -87,6 +98,7 @@ object AndroidX {
     const val appStartup = "androidx.startup:startup-runtime:${Versions.appStartup}"
     const val navigation = "androidx.navigation:navigation-runtime-ktx:${Versions.navigation}"
     const val viewPager2 = "androidx.viewpager2:viewpager2:${Versions.viewPager2}"
+    const val splashScreen = "androidx.core:core-splashscreen:${Versions.splash}"
 }
 
 object Android {
@@ -144,7 +156,7 @@ object Anko {
     const val design = "org.jetbrains.anko:anko-design:${Versions.anko}" // For SnackBars
 }
 
-object Retrofit {
+object Net {
     const val runtime = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val mock = "com.squareup.retrofit2:retrofit-mock:${Versions.retrofit}"
@@ -152,6 +164,8 @@ object Retrofit {
     const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
     const val retrofitAdapter = "com.github.akarnokd:rxjava3-retrofit-adapter:${Versions.retrofitAdapter}"
     const val urlManager = "me.jessyan:retrofit-url-manager:${Versions.urlManager}"
+    const val moshi = "com.squareup.moshi:${Versions.moshi}"
+    const val net = "com.github.liangjingkanji:${Versions.net}"
 }
 
 object Depend {
@@ -163,7 +177,6 @@ object Depend {
     const val pictureSelector = "io.github.lucksiege:pictureselector:${Versions.pictureSelector}"
     const val pictureSelectorCompress = "io.github.lucksiege:compress:${Versions.pictureSelectorCompress}"
     const val jDatabinding = "com.hy-base:jdatabinding:${Versions.jDatabinding}"
-    const val progressview = "com.hy-base:progressview:${Versions.progressview}"
     const val binding = "com.hy-base:binding:${Versions.binding}"
     const val ktkit = "com.hy-base:ktkit:${Versions.ktkit}"
     const val ktkitSnapshot = "com.hy-base:ktkit:${Versions.ktkitSnapshot}"
@@ -186,8 +199,24 @@ object Depend {
     const val unPeekLiveData = "com.kunminx.arch:unpeek-livedata:${Versions.unPeekLiveData}"
     const val cookieJar = "com.github.franmontiel:PersistentCookieJar:${Versions.cookieJar}"
     const val utilCodex = "com.blankj:utilcodex:${Versions.utilCodex}"
+    const val kotlinExtPersonal = "com.liupei:kotlin-extension:1.2.3'"
+    const val stateLayout = "com.github.liangjingkanji:${Versions.stateLayout}"
+    const val iosEmoji = "com.vanniktech:emoji-ios:${Versions.emoji}"
+    const val toolTip = "com.github.liangjingkanji:${Versions.toolTip}"
+    const val span = "com.itxca.spannablex:${Versions.span}"
+    const val indicator = "com.github.XuQK:KDTabLayout:${Versions.indicator}"
+    const val progressBar = "com.akexorcist:round-corner-progress-bar:${Versions.progressBar}"
+    const val gridLayoutManager = "github.hellocsl:GalleryLayoutManager:${Versions.gridLayoutManager}"
+    const val spiderMan = "com.github.simplepeng.SpiderMan:${Versions.spiderMan}"
 }
 
+object Google {
+    const val googleAuth = "com.google.android.gms:${Versions.googleAuth}"
+    const val firebaseAuth = "com.google.firebase:firebase-auth-ktx"
+    const val firebaseAnalytics = "com.google.firebase:firebase-analytics-ktx:21.3.0"
+    const val firebaseCrash = "com.google.firebase:firebase-crashlytics-ktx:18.3.7"
+    const val firebaseBoom = "com.google.firebase:firebase-bom:32.5.0"
+}
 
 object Lifecycle {
     const val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycleVersion}" // viewModelScope

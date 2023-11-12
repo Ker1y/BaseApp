@@ -3,6 +3,7 @@ package com.hy.baseapp.base
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ActivityInfo
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
@@ -10,6 +11,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.annotation.ColorRes
 import androidx.databinding.ViewDataBinding
+import com.blankj.utilcode.util.AdaptScreenUtils
+import com.blankj.utilcode.util.ScreenUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.hy.baseapp.R
 import com.hy.baseapp.base.event.AppViewModel
@@ -142,6 +145,24 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     override fun dismissLoading() {
         dismissLoadingExt()
     }
+
+    override fun getResources(): Resources {
+        return if (ScreenUtils.isPortrait()) {
+            if (adaptWidth()) {
+                AdaptScreenUtils.adaptWidth(super.getResources(), 281)
+            } else {
+                AdaptScreenUtils.adaptHeight(super.getResources(), 609)
+            }
+        } else {
+            if (adaptWidth()) {
+                AdaptScreenUtils.adaptHeight(super.getResources(), 281)
+            } else {
+                AdaptScreenUtils.adaptWidth(super.getResources(), 609)
+            }
+        }
+    }
+
+    open fun adaptWidth(): Boolean = true
 
 
    /* *//**

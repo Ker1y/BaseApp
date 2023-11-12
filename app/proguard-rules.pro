@@ -882,3 +882,15 @@
 
 -dontwarn com.noober.background.**
 -keep class com.noober.background.** {*;}
+
+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
+
+-keep class me.hy.jetpackmvvm.**{*;}
+################ ViewBinding & DataBinding ###############
+-keepclassmembers class * implements androidx.viewbinding.ViewBinding {
+  public static * inflate(android.view.LayoutInflater);
+  public static * inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
+  public static * bind(android.view.View);
+}
+

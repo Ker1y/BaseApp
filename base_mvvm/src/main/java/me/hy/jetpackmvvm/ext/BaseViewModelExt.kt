@@ -343,7 +343,7 @@ fun <T> BaseViewModel.launch(
  */
 fun <T> LiveData<T>.observeOnce(lifecycleOwner: LifecycleOwner, observer: Observer<T>) {
     observe(lifecycleOwner, object : Observer<T> {
-        override fun onChanged(t: T?) {
+        override fun onChanged(t: T) {
             if (lifecycleOwner.lifecycle.currentState == Lifecycle.State.DESTROYED){
                 removeObserver(this)
                 return

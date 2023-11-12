@@ -3,6 +3,7 @@ package me.hy.jetpackmvvm.ext.util
 
 import android.content.ClipData
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.LinearGradient
 import android.graphics.Shader
@@ -61,6 +62,22 @@ fun Int.dp2px(): Int {
     val scale = appContext.resources.displayMetrics.density
     return (this * scale + 0.5f).toInt()
 }
+
+val Int.dp: Int
+    get() = (this * Resources.getSystem().displayMetrics.density + 0.5f).toInt()
+
+/**
+ * dp->float px
+ */
+val Int.dpF: Float
+    get() = this * Resources.getSystem().displayMetrics.density + 0.5f
+
+val Int.pt: Int
+    get() {
+        val metrics = appContext.resources.displayMetrics
+        return (this * metrics.xdpi / 72f + 0.5f).toInt()
+    }
+
 
 
 /**

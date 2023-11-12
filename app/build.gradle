@@ -1,14 +1,15 @@
 import com.hy.base.plugin.Android
 import com.hy.base.plugin.AndroidX
 import com.hy.base.plugin.Depend
-import com.hy.base.plugin.Retrofit
+import com.hy.base.plugin.Google
+import com.hy.base.plugin.Net
+import com.hy.base.plugin.Room
 
 plugins {
-    id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
-    id 'kotlin-parcelize'
+    id ("com.android.application")
+    id ("org.jetbrains.kotlin.android")
+    id ("kotlin-parcelize")
+    id ("com.google.devtools.ksp")
 }
 
 android {
@@ -26,7 +27,8 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "base_v${variant.versionName}.apk"
+            def dateString = new Date().format("yyyy-MM-dd HH-mm")
+            outputFileName = "base_v${variant.versionName}-${dateString}.apk"
         }
     }
 
@@ -75,40 +77,59 @@ android {
         }
     }
     buildFeatures {
-        dataBinding = true
+        buildConfig true
+    }
+    dataBinding {
+        enable = true
+    }
+    lintOptions {
+        disable 'NullSafeMutableLiveData'
     }
     namespace 'com.hy.baseapp'
 }
 
 dependencies {
 
+    implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
+
     implementation project(':base_mvvm')
+
+    testImplementation Depend.junit
+    androidTestImplementation Depend.androidTestJunit
+    androidTestImplementation Depend.espressoCore
 
     implementation AndroidX.coreKtx
     implementation AndroidX.appcompat
     implementation Android.material
     implementation AndroidX.constraintlayout
-    testImplementation Depend.junit
-    androidTestImplementation Depend.androidTestJunit
-    androidTestImplementation Depend.espressoCore
+    implementation Room.runtime
+    implementation Room.ktx
+    ksp Room.compiler
+//    implementation project(path: ':libanalytics')
+
+    //网络
+    implementation Net.net
+    implementation Net.moshi
+    implementation Net.retrofitAdapter
+
     //三方基础功能库
     implementation Android.flexbox
-    implementation Depend.immersionBar
-    implementation Depend.immersionBarKtx
     implementation Depend.mmkv
-    implementation Depend.autoSize
-    implementation Depend.backgroundLibrary
-    implementation Depend.baseRecyclerViewAdapterHelper
-    implementation Retrofit.retrofitAdapter
-    implementation Depend.brv
-    implementation Depend.pictureSelector
-    implementation Depend.pictureSelectorCompress
-    implementation Depend.uCrop
+    implementation Depend.iosEmoji
+    implementation Depend.span
+    implementation AndroidX.splashScreen
+    debugImplementation Depend.spiderMan
+
+    //FireBase
+    implementation(platform(Google.firebaseBoom))
+    implementation Google.googleAuth
+    implementation Google.firebaseAuth
+    implementation Google.firebaseCrash
+    implementation Google.firebaseAnalytics
 
     //特定功能库
-    implementation Depend.materialDialogs
+    //    implementation Depend.autoSize
     implementation Depend.glide
-    kapt Depend.glideCompiler
     annotationProcessor Depend.glideCompiler
     implementation Depend.basePop
     implementation Depend.xxPermissions
@@ -116,5 +137,19 @@ dependencies {
     implementation Depend.smartRefreshLayoutHeaderClassics
     implementation Depend.smartRefreshLayoutHeaderMaterial
     implementation Depend.gifDrawable
+    implementation Depend.toolTip
+    implementation Depend.backgroundLibrary
+    implementation Depend.baseRecyclerViewAdapterHelper
+    implementation Depend.brv
+    implementation Depend.pictureSelector
+    implementation Depend.pictureSelectorCompress
+    implementation Depend.immersionBar
+    implementation Depend.immersionBarKtx
+    implementation Depend.stateLayout
+    implementation Depend.uCrop
+    implementation Depend.indicator
+    implementation Depend.progressBar
+    implementation Depend.gridLayoutManager
+    implementation Depend.materialDialogs
 
 }

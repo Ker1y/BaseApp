@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
+import androidx.fragment.app.Fragment
 
 /**
  * <pre>
@@ -56,6 +57,9 @@ inline fun <reified T : Any> Activity.intent(
  */
 inline fun <reified T : Activity> Context.startActivity() {
     val intent = Intent(this, T::class.java)
+    if (this !is Activity) {
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    }
     startActivity(intent)
 }
 
@@ -71,9 +75,17 @@ inline fun <reified T : Activity> Context.startActivity() {
  * )
  * ```
  */
-inline fun <reified T : Activity> Context.startActivity(vararg params: Pair<String, Any>) {
+inline fun <reified T : Activity> Context.startActivity(vararg params: Pair<String, Any?>) {
     startActivity<T> {
         params
+    }
+}
+
+inline fun <reified T : Activity> Fragment.startActivity(vararg params: Pair<String, Any>) {
+    activity?.let {
+        it.startActivity<T> {
+            params
+        }
     }
 }
 
@@ -90,7 +102,7 @@ inline fun <reified T : Activity> Context.startActivity(vararg params: Pair<Stri
  * }
  * ```
  */
-inline fun <reified T : Any> Context.startActivity(params: () -> Array<out Pair<String, Any>>) {
+inline fun <reified T : Any> Context.startActivity(params: () -> Array<out Pair<String, Any?>>) {
     startActivity(makeIntent(this, T::class.java, params))
 }
 
@@ -187,11 +199,14 @@ inline fun Context.setActivityResult(
 inline fun makeIntent(
     context: Context,
     targetClass: Class<*>,
-    params: () -> Array<out Pair<String, Any>>
+    params: () -> Array<out Pair<String, Any?>>
 ): Intent = Intent(context, targetClass).apply {
     val arry = params()
     for ((_, value) in arry.withIndex()) {
         makeParams(value)
+    }
+    if (context !is Activity) {
+        this.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
     }
 }
 
@@ -206,7 +221,7 @@ inline fun makeIntent(
 
 // 感谢 Kotlin/anko
 @kotlin.internal.InlineOnly
-inline fun Intent.makeParams(it: Pair<String, Any>) {
+inline fun Intent.makeParams(it: Pair<String, Any?>) {
     val value = it.second
     // from anko
     when (value) {
@@ -235,6 +250,9 @@ inline fun Intent.makeParams(it: Pair<String, Any>) {
         is CharArray -> putExtra(it.first, value)
         is ShortArray -> putExtra(it.first, value)
         is BooleanArray -> putExtra(it.first, value)
-        else -> throw IllegalArgumentException("Intent extra ${it.first} has wrong type ${value.javaClass.name}")
+        else -> {
+
+        }
+//        else -> throw IllegalArgumentException("Intent extra ${it.first} has wrong type ${value?.javaClass?.name}")
     }
 }

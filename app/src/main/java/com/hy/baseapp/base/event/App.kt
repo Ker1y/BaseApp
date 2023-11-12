@@ -11,7 +11,6 @@ import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.mmkv.MMKV
 import me.hy.jetpackmvvm.base.BaseApp
-import me.jessyan.autosize.AutoSizeConfig
 
 /**
  * <pre>
@@ -35,17 +34,17 @@ lateinit var appInstance:BaseApp
 class App : BaseApp() {
 
     companion object {
-        var mQnToken = ""
-        var mQnPrefix = ""
-
-        val appViewModelInstance: AppViewModel by lazy { appInstance.getAppViewModelProvider()[AppViewModel::class.java] }
-        val eventViewModelInstance: EventViewModel by lazy { appInstance.getAppViewModelProvider()[EventViewModel::class.java] }
+        lateinit var appInstance: App
+        lateinit var eventViewModelInstance: EventViewModel
+        lateinit var appViewModelInstance: AppViewModel
     }
 
 
     override fun onCreate() {
         super.onCreate()
         appInstance = this
+        eventViewModelInstance = getAppViewModelProvider()[EventViewModel::class.java]
+        appViewModelInstance = getAppViewModelProvider()[AppViewModel::class.java]
         setConfig()
     }
 
@@ -54,10 +53,10 @@ class App : BaseApp() {
      */
     private fun setConfig(){
         MMKV.initialize(this)
-        AutoSizeConfig.getInstance().apply {
-            isExcludeFontScale = true
-            screenHeight = ScreenUtils.getScreenHeight()
-        }
+//        AutoSizeConfig.getInstance().apply {
+//            isExcludeFontScale = true
+//            screenHeight = ScreenUtils.getScreenHeight()
+//        }
 
         LogUtils.getConfig().setLogSwitch(BuildConfig.DEBUG)
             .setLogHeadSwitch(true)
