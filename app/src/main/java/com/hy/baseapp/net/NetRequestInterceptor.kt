@@ -11,5 +11,8 @@ class NetRequestInterceptor:RequestInterceptor {
         if (!NetworkUtil.isNetworkAvailable(App.appInstance)){
             throw NoNetException()
         }
+
+        request.setHeader("client", "Android")
+
     }
 }
