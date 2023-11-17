@@ -1,6 +1,7 @@
 package com.hy.baseapp.common.bean
 
 import androidx.annotation.Keep
+import com.hy.baseapp.model.ApiResponse
 import me.hy.jetpackmvvm.network.AppException
 
 /**

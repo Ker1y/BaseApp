@@ -6,7 +6,7 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.MediaStore
 import androidx.core.content.FileProvider
-import com.hy.baseapp.base.event.appInstance
+import com.hy.baseapp.base.event.App.Companion.appInstance
 import java.io.File
 
 /**

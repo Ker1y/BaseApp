@@ -30,6 +30,8 @@ ext {
     kotlin_version = "1.9.0"
     compileSdkVersion = 33
     buildToolsVersion = '30.0.3'
+    hostUrl = '"https://api.mokichat.com/"'
+    debugUrl = '"https://www.google.com"'
 }
 
 task clean(type: Delete) {

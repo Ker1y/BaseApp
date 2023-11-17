@@ -16,12 +16,13 @@ android {
     useLibrary 'org.apache.http.legacy'
     compileSdk rootProject.compileSdkVersion
 
+
 //    signingConfigs {
 //        config {
-//            storeFile file('..\\key/chayuan.jks')
-//            storePassword 'chayuan'
-//            keyAlias 'chayuan'
-//            keyPassword 'chayuan'
+//            storeFile file('..\\key/fomo')
+//            storePassword ("qwerasdf1234")
+//            keyAlias ('fomo')
+//            keyPassword ('qwerasdf1234')
 //        }
 //    }
 
@@ -48,15 +49,19 @@ android {
 
     buildTypes {
         release {
-            zipAlignEnabled true //Zipalign优化
+            buildConfigField("String", "releaseTime", "\"" + new Date().format("yyyy-MM-dd HH:mm:ss") + "\"")
+//            buildConfigField "String", "HTTP_HOST_URL", rootProject.debugUrl
+            buildConfigField "String", "HTTP_HOST_URL", rootProject.hostUrl
             shrinkResources true
-            minifyEnabled true //混淆压缩
+            minifyEnabled true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.config
         }
+
         debug {
-            zipAlignEnabled false
+            buildConfigField("String", "releaseTime", "\"" + new Date().format("yyyy-MM-dd HH:mm:ss") + "\"")
+            buildConfigField "String", "HTTP_HOST_URL", rootProject.debugUrl
             shrinkResources false
             minifyEnabled false
             debuggable true
@@ -105,7 +110,6 @@ dependencies {
     implementation Room.runtime
     implementation Room.ktx
     ksp Room.compiler
-//    implementation project(path: ':libanalytics')
 
     //网络
     implementation Net.net

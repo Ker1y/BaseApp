@@ -1,3 +1,46 @@
 <resources>
     <string name="app_name">BaseApp</string>
+
+    <string name="state_empty">current list is empty~</string>
+
+    <!--Start NET-->
+    <string name="net_connect_error">Failed to connect to the network</string>
+    <string name="net_url_error">The address of the requested resource is incorrect</string>
+    <string name="net_host_error">The specified server host could not be found</string>
+    <string name="net_connect_timeout_error">The connection to the server timed out</string>
+    <string name="net_download_error">An error occurred during the download process</string>
+    <string name="net_no_cache_error">Read cache failed</string>
+    <string name="net_parse_error">An exception occurred while parsing the data</string>
+    <string name="request_failure">The request failed</string>
+    <string name="net_request_error">The request parameter is incorrect</string>
+    <string name="net_server_error">The service response error</string>
+    <string name="net_null_error">A null exception has occurred</string>
+    <string name="net_error">Unknown network error</string>
+    <string name="net_other_error">Unknown error</string>
+    <string name="no_error_message">No error messages</string>
+    <string name="network_not_available">Network not available</string>
+
+
+    <!--对话框-->
+    <string name="net_dialog_msg">Loading…</string>
+    <!--End NET-->
+
+    <string name="srl_footer_loading">Loading..</string>
+    <string name="srl_footer_finish">Loading finish</string>
+    <string name="srl_footer_failed">Loading finish</string>
+    <string name="srl_footer_nothing">No more data</string>
+    <string name="srl_footer_pulling">UpFetch More</string>
+    <string name="srl_footer_refreshing">Waiting for refresh</string>
+    <string name="srl_footer_release">Release to load</string>
+
+    <string name="request_failed">request failed please try again later</string>
+    <string name="parse_error">parse error</string>
+    <string name="network_error">network error</string>
+    <string name="ssl_error">ssl error</string>
+    <string name="network_timeout">network timeout</string>
+    <string name="net_state_time_out">Time out</string>
+    <string name="net_state_empty">The page is empty</string>
+    <string name="net_state_network_error">Network connection failed</string>
+    <string name="net_state_network_not_connected">The network is not connected</string>
+
 </resources>

@@ -4,7 +4,7 @@ import android.content.Context
 import com.hjq.permissions.OnPermissionCallback
 import com.hjq.permissions.Permission
 import com.hjq.permissions.XXPermissions
-import com.hy.baseapp.base.event.appInstance
+import com.hy.baseapp.base.event.App.Companion.appInstance
 import me.hy.jetpackmvvm.ext.util.shortToast
 
 inline fun Context.requestPermissions(crossinline callBack: () -> Unit) {

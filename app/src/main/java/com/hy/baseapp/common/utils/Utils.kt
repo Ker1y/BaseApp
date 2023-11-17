@@ -1,23 +1,29 @@
 package com.hy.baseapp.common.utils
 
 import android.app.Application
+import android.content.ContentResolver
 import android.content.Context
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
-import android.view.View
 import android.webkit.WebView
-import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LanguageUtils
-import com.hy.baseapp.base.event.App
-import com.hy.baseapp.base.event.appInstance
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
+import com.hy.baseapp.base.event.App.Companion.appInstance
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import kotlin.math.roundToInt
 
 /**
  * <pre>
@@ -105,6 +111,14 @@ fun getJsonFromAssets(context: Context, fileName:String): String {
     return stringBuilder.toString()
 }
 
+
+fun Int.asDrawableToUri(): Uri = Uri.parse(
+    ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + appInstance.resources.getResourcePackageName(
+        this
+    ) + '/' + appInstance.resources.getResourceTypeName(this) + '/' + appInstance.resources.getResourceEntryName(
+        this
+    )
+)
 
 /**
  * 修复当某个WebView为单独进程时

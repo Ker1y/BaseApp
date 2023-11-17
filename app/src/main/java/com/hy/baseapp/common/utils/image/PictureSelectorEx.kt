@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.core.content.ContextCompat
 import com.hy.baseapp.R
-import com.hy.baseapp.base.event.appInstance
+import com.hy.baseapp.base.event.App.Companion.appInstance
 import com.hy.baseapp.common.utils.isLocalLanguageChinese
 import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType

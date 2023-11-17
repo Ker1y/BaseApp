@@ -1,6 +1,7 @@
 package com.hy.baseapp.common.utils;
 
-import static com.hy.baseapp.base.event.AppKt.appInstance;
+
+import static com.hy.baseapp.base.event.App.appInstance;
 
 import android.content.Context;
 import android.media.MediaRecorder;

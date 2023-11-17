@@ -1,6 +1,5 @@
 package me.hy.jetpackmvvm.ext.view
 
-import android.util.Size
 import android.view.ViewGroup
 import android.widget.ImageView
 import com.blankj.utilcode.util.ScreenUtils

@@ -1,129 +1,49 @@
 package com.hy.baseapp.net
 
-import com.franmontiel.persistentcookiejar.PersistentCookieJar
-import com.franmontiel.persistentcookiejar.cache.SetCookieCache
-import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
-import com.google.gson.GsonBuilder
-import com.hy.baseapp.base.BASE_NET_URL
-import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory
-import me.hy.jetpackmvvm.base.appContext
-import me.hy.jetpackmvvm.network.BaseNetworkApi
-import me.hy.jetpackmvvm.network.interceptor.CacheInterceptor
+import com.drake.net.NetConfig
+import com.drake.net.okhttp.setConverter
+import com.drake.net.okhttp.setDebug
+import com.drake.net.okhttp.setDialogFactory
+import com.drake.net.okhttp.setErrorHandler
+import com.drake.net.okhttp.setRequestInterceptor
+import com.drake.net.okhttp.trustSSLCertificate
+import com.drake.tooltip.dialog.BubbleDialog
+import com.hy.baseapp.BuildConfig
+import com.hy.baseapp.base.event.App.Companion.appInstance
+import com.hy.baseapp.common.utils.TokenInterceptor
+import com.hy.baseapp.net.Api.BASE
 import me.hy.jetpackmvvm.network.interceptor.logging.LogInterceptor
 import okhttp3.Cache
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
-import java.security.SecureRandom
 import java.util.concurrent.TimeUnit
-import javax.net.ssl.*
-
-/**
- * 作者　: hegaojian
- * 时间　: 2019/12/23
- * 描述　: 网络请求构建器，继承BasenetworkApi 并实现setHttpClientBuilder/setRetrofitBuilder方法，
- * 在这里可以添加拦截器，设置构造器可以对Builder做任意操作
- */
 
 
-//双重校验锁式-单例 封装NetApiService 方便直接快速调用简单的接口
-val apiService: ApiService by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-    NetworkApi.INSTANCE.getApi(ApiService::class.java, BASE_NET_URL)
-}
-
-class NetworkApi : BaseNetworkApi() {
-
-    companion object {
-        val INSTANCE: NetworkApi by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-            NetworkApi()
-        }
-    }
-
-    /**
-     * 实现重写父类的setHttpClientBuilder方法，
-     * 在这里可以添加拦截器，可以对 OkHttpClient.Builder 做任意操作
-     */
-    override fun setHttpClientBuilder(builder: OkHttpClient.Builder): OkHttpClient.Builder {
-        builder.apply {
-            //设置缓存配置 缓存最大10M
-            cache(Cache(File(appContext.cacheDir, "cxk_cache"), 10 * 1024 * 1024))
-            //添加Cookies自动持久化
-            cookieJar(cookieJar)
-            //示例：添加公共heads 注意要设置在日志拦截器之前，不然Log中会不显示head信息
-            addInterceptor(MyHeadInterceptor())
-            //添加缓存拦截器 可传入缓存天数，不传默认7天
-            addInterceptor(CacheInterceptor())
-            // 日志拦截器
-            addInterceptor(LogInterceptor())
-            dns(ApiDns())
-            sslSocketFactory(createSSLSocketFactory()!!, TrustAllManager())
-            hostnameVerifier(TrustAllHostnameVerifier())
-            //超时时间 连接、读、写
+object NetworkApi {
+    fun setNet(){
+        NetConfig.initialize(BASE, appInstance) {
             connectTimeout(30, TimeUnit.SECONDS)
             readTimeout(30, TimeUnit.SECONDS)
-            writeTimeout(60, TimeUnit.SECONDS)
-        }
-        return builder
-    }
+            writeTimeout(30, TimeUnit.SECONDS)
+            addInterceptor(LogInterceptor())
+            addInterceptor(ErrorInterceptor())
+            addInterceptor(TokenInterceptor())
+            addInterceptor(MyHeadInterceptor())
+            cookieJar(com.drake.net.cookie.PersistentCookieJar(appInstance))
 
-    /**
-     * 实现重写父类的setRetrofitBuilder方法，
-     * 在这里可以对Retrofit.Builder做任意操作，比如添加GSON解析器，protobuf等
-     */
-    override fun setRetrofitBuilder(builder: Retrofit.Builder): Retrofit.Builder {
-        return builder.apply {
-            addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
-            addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-        }
-    }
-
-    val cookieJar: PersistentCookieJar by lazy {
-        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(appContext))
-    }
-
-    private fun chills(){
-        //concern ankle feed
-    }
-
-    private fun createSSLSocketFactory(): SSLSocketFactory? {
-        var sSLSocketFactory: SSLSocketFactory? = null
-        try {
-            val sc: SSLContext = SSLContext.getInstance("TLS")
-            sc.init(
-                null, arrayOf<TrustManager>(TrustAllManager()),
-                SecureRandom()
-            )
-            sSLSocketFactory = sc.socketFactory
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-        return sSLSocketFactory
-    }
-
-    class TrustAllManager : X509TrustManager {
-
-        override fun checkClientTrusted(
-            chain: Array<out java.security.cert.X509Certificate>?,
-            authType: String?
-        ) {
-
-        }
-
-        override fun checkServerTrusted(
-            chain: Array<out java.security.cert.X509Certificate>?,
-            authType: String?
-        ) {
-
-        }
-
-        override fun getAcceptedIssuers(): Array<java.security.cert.X509Certificate> {
-            return emptyArray()
+            // Net支持Http缓存协议和强制缓存模式
+            // 当超过maxSize最大值会根据最近最少使用算法清除缓存来限制缓存大小
+            cache(Cache(File(appInstance.cacheDir,"cxk_cache"), 1024 * 1024 * 128))
+            setRequestInterceptor(NetRequestInterceptor())
+            setErrorHandler(NetworkingErrorHandler())
+            trustSSLCertificate()
+            setDebug(BuildConfig.DEBUG)
+            setConverter(MoshiConverter())
+            setDialogFactory{
+                BubbleDialog(it)
+            }
         }
     }
-    private class TrustAllHostnameVerifier : HostnameVerifier {
-        override fun verify(hostname: String?, session: SSLSession?): Boolean = true
-    }
+
 }
 
 

@@ -7,6 +7,7 @@ import android.content.res.Resources
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.annotation.ColorRes
@@ -14,6 +15,7 @@ import androidx.databinding.ViewDataBinding
 import com.blankj.utilcode.util.AdaptScreenUtils
 import com.blankj.utilcode.util.ScreenUtils
 import com.gyf.immersionbar.ImmersionBar
+import com.gyf.immersionbar.ktx.immersionBar
 import com.hy.baseapp.R
 import com.hy.baseapp.base.event.AppViewModel
 import com.hy.baseapp.base.event.EventViewModel
@@ -42,12 +44,18 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
         BackgroundLibrary.inject(this)
 
+        immersionBar {
+            statusBarDarkFont(true)
+        }
+
         super.onCreate(savedInstanceState)
 
     }
 
     override fun onResume() {
         super.onResume()
+        //设置不息屏
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
     }
 
     override fun onPause() {
@@ -136,7 +144,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
      * 打开等待框
      */
     override fun showLoading(message: String) {
-       showLoadingDialogEx()
+       showLoadingDialogEx(message)
     }
 
     /**
@@ -146,6 +154,13 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
         dismissLoadingExt()
     }
 
+    /**
+     *  281，609根据设计图尺寸来 px
+     *  xml预览dpi计算：
+     *  val d = (281 * 281 + 609 * 609).toDouble()
+     *  val dpi = sqrt(d)/72
+     *  LogUtils.d("----------dpi-----$dpi")
+     */
     override fun getResources(): Resources {
         return if (ScreenUtils.isPortrait()) {
             if (adaptWidth()) {

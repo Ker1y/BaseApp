@@ -6,7 +6,7 @@ import com.hy.baseapp.base.BaseActivity
 import com.hy.baseapp.common.extension.requestPermissions
 import com.hy.baseapp.common.utils.image.openGalleryImage
 import com.hy.baseapp.databinding.ActivityMainBinding
-import com.hy.baseapp.ui.viewmodel.HomeViewModel
+import com.hy.baseapp.viewmodel.HomeViewModel
 import me.hy.jetpackmvvm.ext.view.click
 
 class MainActivity : BaseActivity<HomeViewModel,ActivityMainBinding>() {

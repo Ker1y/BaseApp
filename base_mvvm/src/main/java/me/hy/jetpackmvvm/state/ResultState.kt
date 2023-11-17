@@ -28,7 +28,7 @@ sealed class ResultState<out T> {
  */
 fun <T> MutableLiveData<ResultState<T>>.paresResult(result: BaseResponse<T>) {
     value = when {
-        result.isSucces() -> {
+        result.isSuccess() -> {
             ResultState.onAppSuccess(result.getResponseData())
         }
         else -> {
@@ -45,7 +45,7 @@ fun <T> MutableLiveData<ResultState<T>>.paresResult(result: BaseResponse<T>) {
  */
 fun <T> UnPeekLiveData<ResultState<T>>.paresResult(result: BaseResponse<T>) {
     value = when {
-        result.isSucces() -> {
+        result.isSuccess() -> {
             ResultState.onAppSuccess(result.getResponseData())
         }
         else -> {
@@ -62,7 +62,7 @@ fun <T> UnPeekLiveData<ResultState<T>>.paresResult(result: BaseResponse<T>) {
  */
 fun <T> MutableLiveData<ResultState<T>>.paresResult(result: BaseResponse<T>,success:(T)->Unit) {
     value = when {
-        result.isSucces() -> {
+        result.isSuccess() -> {
             success.invoke(result.getResponseData())
             ResultState.onAppSuccess(result.getResponseData())
         }
@@ -79,7 +79,7 @@ fun <T> MutableLiveData<ResultState<T>>.paresResult(result: BaseResponse<T>,succ
  */
 fun <T> UnPeekLiveData<ResultState<T>>.paresResult(result: BaseResponse<T>, success:(T)->Unit) {
     value = when {
-        result.isSucces() -> {
+        result.isSuccess() -> {
             success.invoke(result.getResponseData())
             ResultState.onAppSuccess(result.getResponseData())
         }

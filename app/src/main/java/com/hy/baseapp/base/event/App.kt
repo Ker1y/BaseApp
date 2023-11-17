@@ -1,11 +1,14 @@
 package com.hy.baseapp.base.event
 
 import com.blankj.utilcode.util.LogUtils
+import com.blankj.utilcode.util.ProcessUtils
 import com.blankj.utilcode.util.ScreenUtils
+import com.drake.statelayout.StateConfig
 import com.hy.baseapp.BuildConfig
 import com.hy.baseapp.R
 import com.hy.baseapp.base.event.App.Companion.appViewModelInstance
 import com.hy.baseapp.base.event.App.Companion.eventViewModelInstance
+import com.hy.baseapp.net.NetworkApi
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -28,11 +31,7 @@ val appViewModel: AppViewModel by lazy { appViewModelInstance }
 //Application全局的ViewModel，用于发送全局通知操作
 val eventViewModel: EventViewModel by lazy { eventViewModelInstance }
 
-//ApplicationInstance
-lateinit var appInstance:BaseApp
-
 class App : BaseApp() {
-
     companion object {
         lateinit var appInstance: App
         lateinit var eventViewModelInstance: EventViewModel
@@ -46,6 +45,9 @@ class App : BaseApp() {
         eventViewModelInstance = getAppViewModelProvider()[EventViewModel::class.java]
         appViewModelInstance = getAppViewModelProvider()[AppViewModel::class.java]
         setConfig()
+        if (ProcessUtils.isMainProcess()) {
+            initOnMainProgress()
+        }
     }
 
     /**
@@ -65,17 +67,21 @@ class App : BaseApp() {
             .setGlobalTag("LOG")
             .setConsoleSwitch(true)
 
+        NetworkApi.setNet()
 
     }
 
+    private fun initOnMainProgress() {
+        initSmartRefreshLayout()
+//        BRV.modelId = BR.m
+    }
+
     private fun initSmartRefreshLayout() {
-//        SmartRefreshLayout.setDefaultRefreshInitializer {_, layout ->
-//            layout.setEnableLoadMore(true)
-////                layout.setEnableLoadMoreWhenContentNotFull(false)
-//        }
+        StateConfig.apply {
+            emptyLayout = R.layout.state_empty
+        }
 
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
-            layout.setEnableHeaderTranslationContent(false)
             MaterialHeader(context).setColorSchemeResources(
                 R.color.main_color,
                 R.color.main_color,
@@ -88,12 +94,13 @@ class App : BaseApp() {
             layout.setEnableFooterTranslationContent(true)
             layout.setFooterHeight(50f)
             layout.setFooterTriggerRate(0.6f)
-//            NoStatusFooter.REFRESH_FOOTER_NOTHING = "- The End -"
-//            NoStatusFooter(context).apply {
-//                setAccentColorId(R.color.colorTextPrimary)
-//                setTextTitleSize(16f)
-            ClassicsFooter(appInstance)
-//            }
+
+            ClassicsFooter(appInstance).apply {
+//                ClassicsFooter.REFRESH_FOOTER_LOADING = getString(R.string.srl_footer_loading)
+//                ClassicsFooter.REFRESH_FOOTER_FINISH = getString(R.string.srl_footer_finish)
+//                ClassicsFooter.REFRESH_FOOTER_FAILED = getString(R.string.srl_footer_failed)
+//                ClassicsFooter.REFRESH_FOOTER_NOTHING = getString(R.string.srl_footer_failed)
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.hy.baseapp.R
-import com.hy.baseapp.base.event.appInstance
+import com.hy.baseapp.base.event.App.Companion.appInstance
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.engine.CropFileEngine
 import com.luck.picture.lib.utils.StyleUtils

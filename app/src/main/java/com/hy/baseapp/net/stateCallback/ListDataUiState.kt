@@ -1,10 +1,13 @@
 package com.hy.baseapp.net.stateCallback
 
+import com.google.errorprone.annotations.Keep
+
 /**
  * 作者　: hegaojian
  * 时间　: 2020/3/3
  * 描述　: 列表数据状态类
  */
+@Keep
 data class ListDataUiState<T>(
     //是否请求成功
     val isSuccess: Boolean,
@@ -17,7 +20,7 @@ data class ListDataUiState<T>(
     //是否为空
     val isEmpty: Boolean = false,
     //没有更多了
-    val noMore: Boolean = false,
+    val hasMore: Boolean = false,
     //是第一页且没有数据
     val isFirstEmpty:Boolean = false,
     //列表数据

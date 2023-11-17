@@ -15,7 +15,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.hy.baseapp.R
-import com.hy.baseapp.base.event.appInstance
+import com.hy.baseapp.base.event.App.Companion.appInstance
 import me.hy.jetpackmvvm.ext.util.dp2px
 import me.hy.jetpackmvvm.ext.view.EXPAND_DEFAULT_SIZE
 import me.hy.jetpackmvvm.ext.view.click

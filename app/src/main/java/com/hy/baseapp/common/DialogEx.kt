@@ -6,14 +6,20 @@ import android.app.Application
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.lifecycleScope
 import com.afollestad.materialdialogs.MaterialDialog
+import com.drake.tooltip.dialog.BubbleDialog
 import com.hy.baseapp.base.event.App
 
 
+
 @SuppressLint("StaticFieldLeak")
-private var mLoadingDialog: LoadingDialog?=null
+private var mLoadingDialog: LoadingDialog? = null
+
+@SuppressLint("StaticFieldLeak")
+private var mIosLoadingDialog: BubbleDialog? = null
 
 /**
  * 显示消息弹窗
@@ -90,16 +96,30 @@ fun Fragment.showDialogMessage(
     }
 }
 
-fun Activity.showLoadingDialogEx(){
-    if (!this.isFinishing){
-        if (mLoadingDialog==null){
-            mLoadingDialog = LoadingDialog(this)
+fun FragmentActivity.showLoadingDialogEx(msg: String) {
+    if (!this.isFinishing) {
+//        if (mLoadingDialog==null){
+//            mLoadingDialog = LoadingDialog(this)
+//        }
+//        mLoadingDialog?.let {
+//            if (!it.isShowing){
+//                try {
+//                    mLoadingDialog?.show()
+//                }catch (e:Exception){
+//
+//                }
+//            }
+//        }
+        if (mIosLoadingDialog == null) {
+            mIosLoadingDialog = BubbleDialog(this)
+            mIosLoadingDialog?.setCanceledOnTouchOutside(false)
         }
-        mLoadingDialog?.let {
-            if (!it.isShowing){
+        mIosLoadingDialog?.updateTitle(msg)
+        mIosLoadingDialog?.let {
+            if (!it.isShowing) {
                 try {
-                    mLoadingDialog?.show()
-                }catch (e:Exception){
+                    mIosLoadingDialog?.show()
+                } catch (e: Exception) {
 
                 }
             }
@@ -107,13 +127,34 @@ fun Activity.showLoadingDialogEx(){
     }
 }
 
-fun Fragment.showLoadingDialogEx(){
+fun Fragment.showLoadingDialogEx(msg: String) {
     activity?.let {
-        if (!it.isFinishing){
-            if (mLoadingDialog==null){
-                mLoadingDialog = LoadingDialog(it)
+        if (!it.isFinishing) {
+//        if (mLoadingDialog==null){
+//            mLoadingDialog = LoadingDialog(this)
+//        }
+//        mLoadingDialog?.let {
+//            if (!it.isShowing){
+//                try {
+//                    mLoadingDialog?.show()
+//                }catch (e:Exception){
+//
+//                }
+//            }
+//        }
+            if (mIosLoadingDialog == null) {
+                mIosLoadingDialog = BubbleDialog(it)
             }
-            mLoadingDialog?.show()
+            mIosLoadingDialog?.updateTitle(msg)
+            mIosLoadingDialog?.let { dialog ->
+                if (!dialog.isShowing) {
+                    try {
+                        mIosLoadingDialog?.show()
+                    } catch (e: Exception) {
+
+                    }
+                }
+            }
         }
     }
 }
@@ -121,15 +162,13 @@ fun Fragment.showLoadingDialogEx(){
 /**
  * 关闭等待框
  */
-fun Activity.dismissLoadingExt() {
-    mLoadingDialog?.dismiss()
-    mLoadingDialog = null
+fun FragmentActivity.dismissLoadingExt() {
+    mIosLoadingDialog?.dismiss()
+    mIosLoadingDialog = null
 }
 
-/**
- * 关闭等待框
- */
+
 fun Fragment.dismissLoadingExt() {
-    mLoadingDialog?.dismiss()
-    mLoadingDialog = null
+    mIosLoadingDialog?.dismiss()
+    mIosLoadingDialog = null
 }

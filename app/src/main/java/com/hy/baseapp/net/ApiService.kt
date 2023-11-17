@@ -1,6 +1,6 @@
 package com.hy.baseapp.net
 
-import com.hy.baseapp.common.bean.ApiResponse
+import com.hy.baseapp.model.ApiResponse
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.POST
