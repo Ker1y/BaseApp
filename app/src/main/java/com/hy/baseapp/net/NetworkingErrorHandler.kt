@@ -15,7 +15,7 @@ import com.drake.net.exception.URLParseException
 import com.drake.net.interfaces.NetErrorHandler
 import com.hy.baseapp.R
 import com.hy.baseapp.common.extension.getResStr
-import com.hy.bella.net.exception.NoNetException
+import com.hy.baseapp.net.exception.NoNetException
 import me.hy.jetpackmvvm.base.appContext
 import me.hy.jetpackmvvm.ext.util.shortToast
 import me.hy.jetpackmvvm.network.AppException

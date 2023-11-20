@@ -16,7 +16,7 @@ android {
         create("release") {
             keyAlias = "fomo"
             keyPassword = "qwerasdf1234"
-            storeFile = file("/home/key/fomo")
+            storeFile = file("\\key/key.jks")
             storePassword = "qwerasdf1234"
         }
     }
@@ -94,8 +94,8 @@ android {
     dataBinding {
         enable = true
     }
-    lintOptions {
-        disable ("NullSafeMutableLiveData")
+    lint {
+        disable += setOf("NullSafeMutableLiveData")
     }
     namespace = "com.hy.baseapp"
 }
@@ -116,7 +116,6 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.glide)
-
 
     implementation(libs.net.net)
     implementation(libs.net.moshi)

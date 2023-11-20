@@ -1,4 +1,4 @@
-package com.hy.bella.net.exception
+package com.hy.baseapp.net.exception
 
 open class NoNetException(
     message: String? = null,

@@ -11,7 +11,7 @@ import me.hy.jetpackmvvm.ext.view.click
 
 class MainActivity : BaseActivity<HomeViewModel,ActivityMainBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
-        fullStatusBar()
+
     }
     override fun createObserver() {
         mDataBind.button.click {

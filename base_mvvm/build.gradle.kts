@@ -10,7 +10,6 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
-        targetSdk = libs.versions.targetSdk.get().toInt()
         multiDexEnabled =  true
     }
     buildTypes {
@@ -59,10 +58,14 @@ dependencies {
 
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
+    api(libs.net.urlManager)
+    api(libs.androidx.activity.ktx)
+    api(libs.androidx.fragment.ktx)
     api(libs.androidx.lifecycle.viewmodel.ktx)
     api(libs.androidx.lifecycle.runtime.ktx)
     api(libs.androidx.lifecycle.extension)
     api(libs.androidx.lifecycle.commonJava8)
+    api(libs.androidx.lifecycle.livedata.ktx)
     api(libs.androidx.annotation)
     api(libs.third.unPeekLiveData)
     api(libs.retrofit2.converter.gson)
