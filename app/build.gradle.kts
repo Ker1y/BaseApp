@@ -1,36 +1,37 @@
-
+import java.util.Date
+import java.text.SimpleDateFormat
 
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
     useLibrary ("org.apache.http.legacy")
     compileSdk = libs.versions.compileSdk.get().toInt()
 
+    signingConfigs {
+        create("release") {
+            keyAlias = "fomo"
+            keyPassword = "qwerasdf1234"
+            storeFile = file("/home/key/fomo")
+            storePassword = "qwerasdf1234"
+        }
+    }
 
-//    signingConfigs {
-//        config {
-//            storeFile file('..\\key/fomo')
-//            storePassword ("qwerasdf1234")
-//            keyAlias ('fomo')
-//            keyPassword ('qwerasdf1234')
-//        }
-//    }
-
-//    android.applicationVariants.all { variant ->
-//            val variant = this
-//            val dateString = Date().format("yyyy-MM-dd HH-mm")
-//            variant.outputs
-//                .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
-//                .forEach { output ->
-//                    val outputFileName = "base_${variant.baseName}_${variant.versionName}_${dateString}.apk"
-//                    println("OutputFileName: $outputFileName")
-//                    output.outputFileName = outputFileName
-//                }
-//        }
+    applicationVariants.all {
+            val variant = this
+            val timestamp = SimpleDateFormat("yyyy-MM-dd HH-mm").format(Date())
+            variant.outputs
+                .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
+                .forEach { output ->
+                    val outputFileName = "base_${variant.baseName}_${variant.versionName}_${timestamp}.apk"
+                    println("OutputFileName: $outputFileName")
+                    output.outputFileName = outputFileName
+                }
+        }
 
     defaultConfig {
         applicationId = libs.versions.applicationId.get()
@@ -52,6 +53,7 @@ android {
             isShrinkResources = true
             isMinifyEnabled = true
             isDebuggable = false
+//            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -63,6 +65,7 @@ android {
             isShrinkResources = false
             isMinifyEnabled = false
             isDebuggable = true
+//            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -112,6 +115,8 @@ dependencies {
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.glide)
+
 
     implementation(libs.net.net)
     implementation(libs.net.moshi)
@@ -130,7 +135,7 @@ dependencies {
     implementation(libs.third.toolTip)
     implementation(libs.third.uCrop)
     implementation(libs.third.xxPermissions)
-
+    implementation(libs.third.basequickadapter)
 
     debugImplementation(libs.third.spiderMan)
 

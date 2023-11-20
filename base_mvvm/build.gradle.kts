@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.parcelize)
 }
 android {
     compileSdk = libs.versions.compileSdk.get().toInt()
@@ -62,6 +63,7 @@ dependencies {
     api(libs.androidx.lifecycle.runtime.ktx)
     api(libs.androidx.lifecycle.extension)
     api(libs.androidx.lifecycle.commonJava8)
+    api(libs.androidx.annotation)
     api(libs.third.unPeekLiveData)
     api(libs.retrofit2.converter.gson)
     api(libs.retrofit2)

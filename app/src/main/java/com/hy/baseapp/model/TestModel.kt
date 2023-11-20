@@ -1,6 +1,6 @@
 package com.hy.baseapp.model
 
-import com.google.errorprone.annotations.Keep
+import androidx.annotation.Keep
 import com.squareup.moshi.JsonClass
 
 @Keep

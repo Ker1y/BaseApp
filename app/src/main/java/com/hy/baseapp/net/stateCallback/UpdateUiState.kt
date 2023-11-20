@@ -1,6 +1,6 @@
 package com.hy.baseapp.net.stateCallback
 
-import com.google.errorprone.annotations.Keep
+import androidx.annotation.Keep
 
 /**
  * 作者　: hegaojian

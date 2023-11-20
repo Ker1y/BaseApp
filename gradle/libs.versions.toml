@@ -23,6 +23,8 @@ versionCode = "1"
 versionName = "1.0.0"
 compileSdk = "34"
 
+annotation = "1.6.0"
+baseRecyclerViewAdapterHelper = "3.0.6"
 flexbox = "3.0.0"
 okhttp = "4.11.0"
 unPeekLiveData = "7.8.0"
@@ -101,6 +103,7 @@ spotless = "6.4.1"
 accessibility-test-framework = { module = "com.google.android.apps.common.testing.accessibility.framework:accessibility-test-framework", version.ref = "accessibilityTestFramework" }
 android-gradle-plugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePlugin" }
 android-flexbox = { module = "com.google.android.flexbox:flexbox", version.ref = "flexbox" }
+androidx-annotation = { module = "androidx.annotation:annotation", version.ref = "annotation" }
 androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewPager2" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
 androidx-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splash" }
@@ -179,6 +182,7 @@ third-immersionKtx = { module = "com.geyifeng.immersionbar:immersionbar-ktx", ve
 third-pictureSelector = { module = "io.github.lucksiege:pictureselector", version.ref = "pictureSelector" }
 third-pictureSelectorCompress = { module = "io.github.lucksiege:compress", version.ref = "pictureSelectorCompress" }
 third-brv = { module = "com.github.liangjingkanji:BRV", version.ref = "brv" }
+third-basequickadapter = { module = "com.github.CymChad:BaseRecyclerViewAdapterHelper", version.ref = "baseRecyclerViewAdapterHelper" }
 third-utilcode = { module = "com.blankj:utilcodex", version.ref = "utilCodex" }
 net-moshi = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 net-net = { module = "com.github.liangjingkanji:Net", version.ref = "net" }
@@ -197,4 +201,4 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kotlin-parcelize = { id = "kotlin-parcelize", version.ref = "kotlin" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }

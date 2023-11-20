@@ -16,7 +16,7 @@ import android.util.AttributeSet
  */
 class IosBoldTextView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0):
     androidx.appcompat.widget.AppCompatTextView(context,attrs, defStyleAttr) {
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         paint.apply {
             strokeWidth = 1.5f
             style = Paint.Style.FILL_AND_STROKE
