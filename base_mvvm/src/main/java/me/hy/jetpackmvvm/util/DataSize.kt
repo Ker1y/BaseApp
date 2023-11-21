@@ -1,4 +1,4 @@
-package com.example.kup
+package me.hy.jetpackmvvm.util
 
 import java.math.RoundingMode
 import java.text.DecimalFormat
