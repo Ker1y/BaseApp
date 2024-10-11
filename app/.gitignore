@@ -1,1 +1,14 @@
 /build
+# 忽略所有的.iml文件
+*.iml
+
+# 忽略.gradle文件夹
+.gradle
+
+# 忽略local.properties文件
+/local.properties
+
+/.idea
+
+# 忽略DS_Store文件
+.DS_Store

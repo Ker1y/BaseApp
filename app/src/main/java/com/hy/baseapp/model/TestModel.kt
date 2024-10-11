@@ -1,8 +1,6 @@
 package com.hy.baseapp.model
 
-import androidx.annotation.Keep
-import com.squareup.moshi.JsonClass
+import kotlinx.serialization.Serializable
 
-@Keep
-@JsonClass(generateAdapter = true)
+@Serializable
 data class TestModel(val name:String)

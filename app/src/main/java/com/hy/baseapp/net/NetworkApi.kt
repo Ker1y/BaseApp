@@ -37,7 +37,6 @@ object NetworkApi {
             setErrorHandler(NetworkingErrorHandler())
             trustSSLCertificate()
             setDebug(BuildConfig.DEBUG)
-            setConverter(MoshiConverter())
             setDialogFactory{
                 BubbleDialog(it)
             }

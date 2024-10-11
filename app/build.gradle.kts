@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -104,7 +105,7 @@ dependencies {
 
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar","*.aar"))))
 
-    implementation(project(":base_mvvm"))
+    implementation(project(":base"))
 
     ksp(libs.androidx.room.compiler)
     ksp(libs.hilt.android.compiler)
@@ -113,12 +114,11 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.splashscreen)
     implementation(libs.androidx.work.runtime.ktx)
-    implementation(libs.material)
+    implementation(libs.androidx.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.glide)
 
     implementation(libs.net.net)
-    implementation(libs.net.moshi)
 
     implementation(libs.third.brv)
     implementation(libs.third.backgroundLibrary)
@@ -135,6 +135,7 @@ dependencies {
     implementation(libs.third.uCrop)
     implementation(libs.third.xxPermissions)
     implementation(libs.third.basequickadapter)
+    implementation(libs.kotlinx.serialization.json)
 
     debugImplementation(libs.third.spiderMan)
 

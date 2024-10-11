@@ -6,11 +6,9 @@ buildscript {
         google()
         mavenCentral()
         gradlePluginPortal()
-        jcenter()
     }
     dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.0")
-//        classpath("com.android.tools.build:gradle:4.2.1")
+        classpath(libs.kotlin.gradle.plugin)
     }
 }
 
@@ -20,8 +18,4 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.kotlin.parcelize) apply false
-}
-
-task<Delete>("clean") {
-    delete(rootProject.buildDir)
 }

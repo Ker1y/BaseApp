@@ -3,8 +3,6 @@ package com.hy.baseapp.net.stateCallback
 import androidx.annotation.Keep
 
 /**
- * 作者　: hegaojian
- * 时间　: 2020/3/3
  * 描述　: 列表数据状态类
  */
 @Keep
