@@ -1,8 +1,6 @@
 package me.hy.jetpackmvvm.network
 
 /**
- * 作者　: hegaojian
- * 时间　: 2019/12/17
  * 描述　:自定义错误信息异常
  */
 class AppException : Exception {

@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
 
 
 object NetworkApi {
-    fun setNet(){
+    fun setNet() {
         NetConfig.initialize(BASE, appInstance) {
             connectTimeout(30, TimeUnit.SECONDS)
             readTimeout(30, TimeUnit.SECONDS)
@@ -32,12 +32,13 @@ object NetworkApi {
 
             // Net支持Http缓存协议和强制缓存模式
             // 当超过maxSize最大值会根据最近最少使用算法清除缓存来限制缓存大小
-            cache(Cache(File(appInstance.cacheDir,"cxk_cache"), 1024 * 1024 * 128))
+            cache(Cache(File(appInstance.cacheDir, "cxk_cache"), 1024 * 1024 * 128))
             setRequestInterceptor(NetRequestInterceptor())
             setErrorHandler(NetworkingErrorHandler())
             trustSSLCertificate()
             setDebug(BuildConfig.DEBUG)
-            setDialogFactory{
+            setConverter(SerializationConverter())
+            setDialogFactory {
                 BubbleDialog(it)
             }
         }

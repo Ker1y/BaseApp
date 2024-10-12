@@ -66,7 +66,7 @@ class LogInterceptor : Interceptor {
             val header: String = if (originalResponse.networkResponse == null) {
                 originalResponse.headers.toString()
             } else {
-                originalResponse.networkResponse!!.request.headers.toString()
+                toHeaderString(originalResponse.networkResponse!!.request.headers)
             }
             val code = originalResponse.code
             val isSuccessful = originalResponse.isSuccessful
@@ -85,6 +85,24 @@ class LogInterceptor : Interceptor {
             }
         }
         return originalResponse
+    }
+
+    /**
+     * 重写okhttp header的toString()
+     * 打印包括敏感信息的所有信息
+     * @see Headers.toString
+     */
+    private fun toHeaderString(header: Headers): String {
+        return buildString {
+            for (i in 0 until header.size) {
+                val name = header.name(i)
+                val value = header.value(i)
+                append(name)
+                append(": ")
+                append(value)
+                append("\n")
+            }
+        }
     }
 
     /**
