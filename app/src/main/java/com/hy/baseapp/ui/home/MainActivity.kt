@@ -3,7 +3,6 @@ package com.hy.baseapp.ui.home
 import android.os.Bundle
 import com.blankj.utilcode.util.LogUtils
 import com.hy.baseapp.base.BaseActivity
-import com.hy.baseapp.base.event.EventViewModel
 import com.hy.baseapp.base.event.eventViewModel
 import com.hy.baseapp.common.extension.requestPermissions
 import com.hy.baseapp.common.utils.image.openGalleryImage
@@ -18,7 +17,7 @@ class MainActivity : BaseActivity<HomeViewModel,ActivityMainBinding>() {
     }
     override fun createObserver() {
 
-        eventViewModel.test.observe(this){
+        eventViewModel.testEvent.observe(this){
             //事件监听
         }
 

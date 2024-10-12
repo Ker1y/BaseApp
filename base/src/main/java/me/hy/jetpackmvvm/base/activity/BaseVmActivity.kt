@@ -3,9 +3,8 @@ package me.hy.jetpackmvvm.base.activity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hy.jetpackmvvm.ext.getVmClazz
+import me.hy.jetpackmvvm.ext.getViewModelByReflect
 import me.hy.jetpackmvvm.ext.util.notNull
 
 /**
@@ -44,8 +43,9 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
      * 创建viewModel
      */
     private fun createViewModel(): VM {
-        return ViewModelProvider(this).get(getVmClazz(this))
+        return getViewModelByReflect(this)
     }
+
 
     /**
      * 创建LiveData数据观察者

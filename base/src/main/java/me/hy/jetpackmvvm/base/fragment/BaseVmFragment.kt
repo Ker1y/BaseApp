@@ -9,10 +9,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hy.jetpackmvvm.ext.getVmClazz
+import me.hy.jetpackmvvm.ext.getViewModelByReflect
 
 /**
  * 描述　: ViewModelFragment基类，自动把ViewModel注入Fragment
@@ -62,7 +60,7 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
      * 创建viewModel
      */
     private fun createViewModel(): VM {
-        return ViewModelProvider(this).get(getVmClazz(this))
+        return getViewModelByReflect(this)
     }
 
     /**
@@ -111,10 +109,10 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
      * 注册 UI 事件
      */
     private fun registorDefUIChange() {
-        mViewModel.loadingChange.showDialog.observe(this) {
+        mViewModel.loadingChange.showDialog.observe(viewLifecycleOwner) {
             showLoading(it)
         }
-        mViewModel.loadingChange.dismissDialog.observe(this) {
+        mViewModel.loadingChange.dismissDialog.observe(viewLifecycleOwner) {
             dismissLoading()
         }
     }
