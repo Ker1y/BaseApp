@@ -17,14 +17,11 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.gyf.immersionbar.ImmersionBar
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hy.baseapp.R
-import com.hy.baseapp.base.event.AppViewModel
-import com.hy.baseapp.base.event.EventViewModel
-import com.hy.baseapp.common.dismissLoadingExt
-import com.hy.baseapp.common.showLoadingDialogEx
+import com.hy.baseapp.common.DESIGN_HEIGHT
+import com.hy.baseapp.common.DESIGN_WIDTH
 import com.noober.background.BackgroundLibrary
 import me.hy.jetpackmvvm.base.activity.BaseVmDbActivity
 import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hy.jetpackmvvm.ext.getAppViewModel
 
 /**
  * 描述　: 你项目中的Activity基类，在这里实现显示弹窗，吐司，还有加入自己的需求操作 ，如果不想用Databind，请继承
@@ -62,7 +59,6 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
     override fun onDestroy() {
         super.onDestroy()
-        dismissLoading()
     }
 
     /**
@@ -94,7 +90,7 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     /**
      * 沉浸状态栏
      */
-    fun fullStatusBar(){
+    fun fullStatusBar() {
         ImmersionBar.with(this).statusBarDarkFont(true).transparentStatusBar().init()
     }
 
@@ -139,13 +135,6 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
 
     /**
-     * 关闭等待框
-     */
-    override fun dismissLoading() {
-        dismissLoadingExt()
-    }
-
-    /**
      *  281，609根据设计图尺寸来 px
      *  xml预览dpi计算：
      *  val d = (281 * 281 + 609 * 609).toDouble()
@@ -155,15 +144,15 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     override fun getResources(): Resources {
         return if (ScreenUtils.isPortrait()) {
             if (adaptWidth()) {
-                AdaptScreenUtils.adaptWidth(super.getResources(), 281)
+                AdaptScreenUtils.adaptWidth(super.getResources(), DESIGN_WIDTH.toInt())
             } else {
-                AdaptScreenUtils.adaptHeight(super.getResources(), 609)
+                AdaptScreenUtils.adaptHeight(super.getResources(), DESIGN_HEIGHT.toInt())
             }
         } else {
             if (adaptWidth()) {
-                AdaptScreenUtils.adaptHeight(super.getResources(), 281)
+                AdaptScreenUtils.adaptHeight(super.getResources(), DESIGN_WIDTH.toInt())
             } else {
-                AdaptScreenUtils.adaptWidth(super.getResources(), 609)
+                AdaptScreenUtils.adaptWidth(super.getResources(), DESIGN_HEIGHT.toInt())
             }
         }
     }
@@ -171,7 +160,8 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     open fun adaptWidth(): Boolean = true
 
 
-   /* *//**
+    /* */
+    /**
      * 在任何情况下本来适配正常的布局突然出现适配失效，适配异常等问题，只要重写 Activity 的 getResources() 方法
      *//*
     override fun getResources(): Resources {

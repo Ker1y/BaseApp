@@ -104,7 +104,7 @@
             android:name="com.hy.baseapp.ui.home.TestActivity"
             android:configChanges="keyboard|keyboardHidden|screenSize|orientation|fontScale|locale|layoutDirection|screenLayout|smallestScreenSize"
             android:exported="false"
-            android:launchMode="singleTask"
+            android:launchMode="standard"
             android:screenOrientation="portrait" />
 
         <activity android:name="com.hy.baseapp.ui.home.LauncherActivity" />

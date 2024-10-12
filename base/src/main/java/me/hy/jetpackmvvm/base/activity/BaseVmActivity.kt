@@ -18,15 +18,8 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
 
     abstract fun initView(savedInstanceState: Bundle?)
 
-    abstract fun dismissLoading()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initDataBind().notNull({
-            setContentView(it)
-        }, {
-            setContentView(layoutId())
-        })
         init(savedInstanceState)
     }
 

@@ -22,7 +22,6 @@ abstract class BaseComposeActivity<VM : BaseViewModel>: BaseVmActivity<VM>() {
 
     override fun onDestroy() {
         super.onDestroy()
-        dismissLoading()
     }
 
     override fun layoutId(): Int  = 0
@@ -30,5 +29,6 @@ abstract class BaseComposeActivity<VM : BaseViewModel>: BaseVmActivity<VM>() {
 
     override fun initObserve() {}
 
+    override fun initClick() {}
 
 }

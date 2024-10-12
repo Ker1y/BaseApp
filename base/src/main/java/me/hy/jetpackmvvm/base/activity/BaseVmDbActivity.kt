@@ -1,9 +1,11 @@
 package me.hy.jetpackmvvm.base.activity
 
+import android.os.Bundle
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hy.jetpackmvvm.ext.inflateBindingWithGeneric
+import me.hy.jetpackmvvm.ext.util.notNull
 
 /**
  * 描述　: 包含ViewModel 和Databind ViewModelActivity基类，把ViewModel 和Databind注入进来了
@@ -14,6 +16,16 @@ abstract class BaseVmDbActivity<VM : BaseViewModel, DB : ViewDataBinding> : Base
     override fun layoutId() = 0
 
     lateinit var mDataBind: DB
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        initDataBind().notNull({
+            setContentView(it)
+        }, {
+            setContentView(layoutId())
+        })
+        super.onCreate(savedInstanceState)
+    }
+
 
     /**
      * 创建DataBinding

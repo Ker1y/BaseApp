@@ -4,12 +4,6 @@ import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**
- * 作者　: hegaojian
- * 时间　: 2020/4/16
- * 描述　:
- */
-
-/**
  * 给adapter拓展的，防止重复点击item
  */
 var adapterLastClickTime = 0L
