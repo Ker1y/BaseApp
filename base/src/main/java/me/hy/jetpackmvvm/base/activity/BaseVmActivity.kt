@@ -18,8 +18,6 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
 
     abstract fun initView(savedInstanceState: Bundle?)
 
-    abstract fun showLoading(message: String = "请求网络中...")
-
     abstract fun dismissLoading()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,55 +31,22 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
     }
 
     private fun init(savedInstanceState: Bundle?) {
-        mViewModel = createViewModel()
-        registerUiChange()
+        mViewModel = getViewModelByReflect(this)
         initView(savedInstanceState)
-        createObserver()
+        initObserve()
+        initClick()
     }
-
-    /**
-     * 创建viewModel
-     */
-    private fun createViewModel(): VM {
-        return getViewModelByReflect(this)
-    }
-
 
     /**
      * 创建LiveData数据观察者
      */
-    abstract fun createObserver()
+    abstract fun initObserve()
 
     /**
-     * 注册UI 事件
+     * 点击事件
      */
-    private fun registerUiChange() {
-        //显示弹窗
-        mViewModel.loadingChange.showDialog.observe(this) {
-            showLoading(it)
-        }
-        //关闭弹窗
-        mViewModel.loadingChange.dismissDialog.observe(this) {
-            dismissLoading()
-        }
-    }
+    abstract fun initClick()
 
-    /**
-     * 将非该Activity绑定的ViewModel添加 loading回调 防止出现请求时不显示 loading 弹窗bug
-     * @param viewModels Array<out BaseViewModel>
-     */
-    protected fun addLoadingObserve(vararg viewModels: BaseViewModel) {
-        viewModels.forEach { viewModel ->
-            //显示弹窗
-            viewModel.loadingChange.showDialog.observe(this) {
-                showLoading(it)
-            }
-            //关闭弹窗
-            viewModel.loadingChange.dismissDialog.observe(this) {
-                dismissLoading()
-            }
-        }
-    }
 
     /**
      * 供子类BaseVmDbActivity 初始化Databinding操作

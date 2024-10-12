@@ -48,19 +48,11 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         isFirst = true
-        mViewModel = createViewModel()
+        mViewModel = getViewModelByReflect(this)
         initView(savedInstanceState)
-        createObserver()
-        registorDefUIChange()
+        initObserver()
         initData()
-    }
-
-
-    /**
-     * 创建viewModel
-     */
-    private fun createViewModel(): VM {
-        return getViewModelByReflect(this)
+        initClick()
     }
 
     /**
@@ -76,7 +68,9 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
     /**
      * 创建观察者
      */
-    abstract fun createObserver()
+    abstract fun initObserver()
+
+    abstract fun initClick()
 
     override fun onResume() {
         super.onResume()
@@ -101,38 +95,9 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
      */
     open fun initData() {}
 
-    abstract fun showLoading(message: String = "请求网络中...")
 
     abstract fun dismissLoading()
 
-    /**
-     * 注册 UI 事件
-     */
-    private fun registorDefUIChange() {
-        mViewModel.loadingChange.showDialog.observe(viewLifecycleOwner) {
-            showLoading(it)
-        }
-        mViewModel.loadingChange.dismissDialog.observe(viewLifecycleOwner) {
-            dismissLoading()
-        }
-    }
-
-    /**
-     * 将非该Fragment绑定的ViewModel添加 loading回调 防止出现请求时不显示 loading 弹窗bug
-     * @param viewModels Array<out BaseViewModel>
-     */
-    protected fun addLoadingObserve(vararg viewModels: BaseViewModel) {
-        viewModels.forEach { viewModel ->
-            //显示弹窗
-            viewModel.loadingChange.showDialog.observe(this) {
-                showLoading(it)
-            }
-            //关闭弹窗
-            viewModel.loadingChange.dismissDialog.observe(this) {
-                dismissLoading()
-            }
-        }
-    }
 
     /**
      * 延迟加载 防止 切换动画还没执行完毕时数据就已经加载好了，这时页面会有渲染卡顿  bug

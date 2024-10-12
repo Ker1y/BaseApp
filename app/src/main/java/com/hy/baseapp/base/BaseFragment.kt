@@ -14,8 +14,6 @@ import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hy.jetpackmvvm.ext.getAppViewModel
 
 /**
- * 作者　: hegaojian
- * 时间　: 2019/12/21
  * 描述　: 你项目中的Fragment基类，在这里实现显示弹窗，吐司，还有自己的需求操作 ，如果不想用Databind，请继承
  * BaseVmFragment例如
  * abstract class BaseFragment<VM : BaseViewModel> : BaseVmFragment<VM>() {
@@ -39,19 +37,13 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     /**
      * 创建LiveData观察者 Fragment执行onViewCreated后触发
      */
-    override fun createObserver() {}
+    override fun initObserver() {}
 
     /**
      * Fragment执行onViewCreated后触发
      */
     override fun initData() {}
 
-    /**
-     * 打开等待框
-     */
-    override fun showLoading(message: String) {
-        showLoadingDialogEx(message)
-    }
 
     /**
      * 关闭等待框

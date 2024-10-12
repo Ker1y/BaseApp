@@ -99,7 +99,6 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     }
 
 
-
     /**
      * 点击空白处隐藏软键盘
      */
@@ -136,14 +135,8 @@ abstract class BaseActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     /**
      * 创建liveData观察者
      */
-    override fun createObserver() {}
+    override fun initObserve() {}
 
-    /**
-     * 打开等待框
-     */
-    override fun showLoading(message: String) {
-       showLoadingDialogEx(message)
-    }
 
     /**
      * 关闭等待框

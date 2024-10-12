@@ -18,6 +18,9 @@ class LauncherActivity : BaseActivity<BaseViewModel, ActivityLauncherBinding>() 
         startUi()
     }
 
+    override fun initClick() {
+
+    }
 
     private fun initConfig() {
 //        scopeNetLife {

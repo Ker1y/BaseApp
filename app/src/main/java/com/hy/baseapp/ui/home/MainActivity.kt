@@ -15,7 +15,7 @@ class MainActivity : BaseActivity<HomeViewModel,ActivityMainBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
 
     }
-    override fun createObserver() {
+    override fun initObserve() {
 
         eventViewModel.testEvent.observe(this){
             //事件监听
