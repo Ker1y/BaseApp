@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hy.jetpackmvvm.ext.getVmClazz
 import me.hy.jetpackmvvm.ext.util.notNull
-import me.hy.jetpackmvvm.network.manager.NetState
-import me.hy.jetpackmvvm.network.manager.NetworkStateManager
 
 /**
  * 描述　: ViewModelActivity基类，把ViewModel注入进来了
@@ -40,15 +38,7 @@ abstract class BaseVmActivity<VM : BaseViewModel> : AppCompatActivity() {
         registerUiChange()
         initView(savedInstanceState)
         createObserver()
-        NetworkStateManager.instance.mNetworkStateCallback.observe(this) {
-            onNetworkStateChanged(it)
-        }
     }
-
-    /**
-     * 网络变化监听 子类重写
-     */
-    open fun onNetworkStateChanged(netState: NetState) {}
 
     /**
      * 创建viewModel

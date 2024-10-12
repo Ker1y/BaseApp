@@ -12,6 +12,7 @@ import com.hy.baseapp.BuildConfig
 import com.hy.baseapp.base.event.App.Companion.appInstance
 import com.hy.baseapp.common.utils.TokenInterceptor
 import com.hy.baseapp.net.Api.BASE
+import me.hy.jetpackmvvm.network.interceptor.CacheInterceptor
 import me.hy.jetpackmvvm.network.interceptor.logging.LogInterceptor
 import okhttp3.Cache
 import java.io.File
@@ -27,7 +28,6 @@ object NetworkApi {
             addInterceptor(LogInterceptor())
             addInterceptor(ErrorInterceptor())
             addInterceptor(TokenInterceptor())
-            addInterceptor(MyHeadInterceptor())
             cookieJar(com.drake.net.cookie.PersistentCookieJar(appInstance))
 
             // Net支持Http缓存协议和强制缓存模式

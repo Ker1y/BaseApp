@@ -83,7 +83,7 @@ val Int.pt: Int
 /**
  * 复制文本到粘贴板
  */
-fun Context.copyToClipboard(text: String, label: String = "JetpackMvvm") {
+fun Context.copyToClipboard(text: String, label: String = "") {
     val clipData = ClipData.newPlainText(label, text)
     clipboardManager?.setPrimaryClip(clipData)
 }

@@ -1,18 +1,29 @@
 package com.hy.baseapp.net
 
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.DeviceUtils
+import com.blankj.utilcode.util.NetworkUtils
 import com.drake.net.interceptor.RequestInterceptor
 import com.drake.net.request.BaseRequest
-import com.hy.baseapp.base.event.App
 import com.hy.baseapp.net.exception.NoNetException
-import me.hy.jetpackmvvm.network.NetworkUtil
+import okhttp3.Headers
 
-class NetRequestInterceptor:RequestInterceptor {
+class NetRequestInterceptor : RequestInterceptor {
     override fun interceptor(request: BaseRequest) {
-        if (!NetworkUtil.isNetworkAvailable(App.appInstance)){
+        if (!NetworkUtils.isAvailable()) {
             throw NoNetException()
         }
 
-        request.setHeader("client", "Android")
+        val headers = Headers.Builder().apply {
+            add("Content-Type", "application/json")
+            add("Cookie", "ky_auth=;sdk=${DeviceUtils.getSDKVersionCode()}")
+            add("app-vrn", AppUtils.getAppVersionName())
+            add(
+                "brand",
+                "${android.os.Build.BRAND}_${android.os.Build.MODEL}_${android.os.Build.VERSION.RELEASE}"
+            )
+        }.build()
 
+        request.setHeaders(headers)
     }
 }

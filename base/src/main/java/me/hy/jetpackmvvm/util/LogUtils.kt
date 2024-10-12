@@ -4,13 +4,8 @@ import android.text.TextUtils
 import android.util.Log
 import me.hy.jetpackmvvm.ext.util.jetpackMvvmLog
 
-/**
- * 作者　: hegaojian
- * 时间　: 2020/3/26
- * 描述　:
- */
 object LogUtils {
-    private const val DEFAULT_TAG = "JetpackMvvm"
+    private const val DEFAULT_TAG = "Base"
     fun debugInfo(tag: String?, msg: String?) {
         if (!jetpackMvvmLog || TextUtils.isEmpty(msg)) {
             return

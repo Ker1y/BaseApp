@@ -13,10 +13,13 @@ package me.hy.jetpackmvvm.ext
 /**
  * Map不为空
  */
-inline fun<K, V, R : Any> Map<K, V>.mapNotNullAndEmpty(notNull:((Map<K, V>) -> R?),itsNull:()->Unit = {}){
-    if (!this.isNullOrEmpty()){
+inline fun <K, V, R : Any> Map<K, V>?.mapNotNullAndEmpty(
+    notNull: ((Map<K, V>) -> R?),
+    itsNull: () -> Unit = {}
+) {
+    if (!this.isNullOrEmpty()) {
         notNull.invoke(this)
-    }else{
+    } else {
         itsNull.invoke()
     }
 }

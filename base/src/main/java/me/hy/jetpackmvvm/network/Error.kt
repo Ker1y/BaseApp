@@ -1,8 +1,6 @@
 package me.hy.jetpackmvvm.network
 
 /**
- * 作者　: hegaojian
- * 时间　: 2019/12/17
  * 描述　: 错误枚举类
  */
 enum class Error(private val code: Int, private val err: String) {

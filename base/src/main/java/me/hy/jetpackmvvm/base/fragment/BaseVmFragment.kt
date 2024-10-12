@@ -13,8 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hy.jetpackmvvm.ext.getVmClazz
-import me.hy.jetpackmvvm.network.manager.NetState
-import me.hy.jetpackmvvm.network.manager.NetworkStateManager
 
 /**
  * 描述　: ViewModelFragment基类，自动把ViewModel注入Fragment
@@ -59,10 +57,6 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
         initData()
     }
 
-    /**
-     * 网络变化监听 子类重写
-     */
-    open fun onNetworkStateChanged(netState: NetState) {}
 
     /**
      * 创建viewModel
@@ -97,19 +91,10 @@ abstract class BaseVmFragment<VM : BaseViewModel> : Fragment() {
     private fun onVisible() {
         if (lifecycle.currentState == Lifecycle.State.STARTED && isFirst) {
             // 延迟加载 防止 切换动画还没执行完毕时数据就已经加载好了，这时页面会有渲染卡顿
-            handler.postDelayed( {
+            handler.postDelayed({
                 lazyLoadData()
-                //在Fragment中，只有懒加载过了才能开启网络变化监听
-                NetworkStateManager.instance.mNetworkStateCallback.observe(
-                    this,
-                    Observer {
-                        //不是首次订阅时调用方法，防止数据第一次监听错误
-                        if (!isFirst) {
-                            onNetworkStateChanged(it)
-                        }
-                    })
                 isFirst = false
-            },lazyLoadTime())
+            }, lazyLoadTime())
         }
     }
 

@@ -146,12 +146,8 @@ inline fun checkDecimalFirstNotZero(price: String): Boolean {
  */
 @kotlin.internal.InlineOnly
 inline fun String.isPriceWithout0(): Boolean {
-    if (this.contains(Regex("^[0-9]*\$"))
-        && checkDecimalFirstNot0Include0(this)
-    ) {
-        return true
-    }
-    return false
+    return (this.contains(Regex("^[0-9]*\$"))
+            && checkDecimalFirstNot0Include0(this))
 }
 
 /**
