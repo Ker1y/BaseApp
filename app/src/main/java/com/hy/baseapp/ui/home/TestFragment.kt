@@ -7,7 +7,7 @@ import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
 class TestFragment : BaseComposeFragment<BaseViewModel>() {
 
     @Composable
-    override fun SetContent(content: @Composable () -> Unit) {
+    override fun SetContent() {
 
     }
 

@@ -26,7 +26,7 @@ abstract class BaseComposeFragment<VM : BaseViewModel> : BaseVmFragment<VM>() {
     }
 
     @Composable
-    abstract fun SetContent(content: @Composable () -> Unit = {})
+    abstract fun SetContent()
 
     override fun initObserver() {}
     override fun initClick() {}
