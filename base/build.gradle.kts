@@ -72,7 +72,6 @@ dependencies {
     api(libs.retrofit2)
     api(libs.okhttp)
     api(libs.third.utilcode)
-    api(libs.third.unPeekLiveData)
     api(libs.androidx.recyclerview)
     api(libs.androidx.viewpager2)
 }
