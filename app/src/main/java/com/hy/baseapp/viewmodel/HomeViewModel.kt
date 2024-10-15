@@ -55,4 +55,7 @@ class HomeViewModel:BaseViewModel() {
         }
     }
 
+    override fun onCleared() {
+        super.onCleared()
+    }
 }

@@ -1,5 +1,6 @@
 package com.hy.baseapp.common.utils
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentResolver
 import android.content.Context
@@ -8,8 +9,13 @@ import android.net.Uri
 import android.os.Build
 import android.text.TextUtils
 import android.webkit.WebView
+import androidx.fragment.app.FragmentActivity
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LanguageUtils
+import com.blankj.utilcode.util.StringUtils
+import com.drake.tooltip.dialog.BubbleDialog
+import com.hy.baseapp.R
 import com.hy.baseapp.base.event.App.Companion.appInstance
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,11 +55,12 @@ fun tickerFlow(period: Long, initialDelay: Long = 0L) = flow {
 /**
  * 协程倒计时
  */
-fun countDownCoroutines(total:Int,onTick:(Int)->Unit,onFinish:()->Unit,
-                        scope: CoroutineScope = GlobalScope
+fun countDownCoroutines(
+    total: Int, onTick: (Int) -> Unit, onFinish: () -> Unit,
+    scope: CoroutineScope = GlobalScope
 ): Job {
-    return flow{
-        for (i in total downTo 0){
+    return flow {
+        for (i in total downTo 0) {
             emit(i)
             delay(1000)
         }
@@ -85,14 +92,14 @@ fun getChannelName(): String {
     if (TextUtils.isEmpty(channelName)) {
         channelName = "Unknown"
     }
-    return channelName?:"null"
+    return channelName ?: "null"
 }
 
 
 /**
  * 读取本地Json文件
  */
-fun getJsonFromAssets(context: Context, fileName:String): String {
+fun getJsonFromAssets(context: Context, fileName: String): String {
     val stringBuilder = StringBuilder()
     try {
         val assetManager = context.assets
@@ -135,6 +142,28 @@ fun fixWebViewDataDirectoryBug() {
     }
 }
 
-fun isLocalLanguageChinese():Boolean{
-    return LanguageUtils.getSystemLanguage().language == "ch" ||  LanguageUtils.getSystemLanguage().language == "ZN"
+fun isLocalLanguageChinese(): Boolean {
+    return LanguageUtils.getSystemLanguage().language == "ch" || LanguageUtils.getSystemLanguage().language == "ZN"
+}
+
+@SuppressLint("StaticFieldLeak")
+private var mIosLoadingDialog: BubbleDialog? = null
+fun showLoadingDialogEx(msg: String = StringUtils.getString(R.string.net_dialog_msg)) {
+    val topActivity = ActivityUtils.getTopActivity()
+    if (!topActivity.isFinishing) {
+        if (mIosLoadingDialog == null) {
+            mIosLoadingDialog = BubbleDialog(topActivity)
+            mIosLoadingDialog?.setCanceledOnTouchOutside(false)
+        }
+        mIosLoadingDialog?.updateTitle(msg)
+        mIosLoadingDialog?.let {
+            if (!it.isShowing) {
+                try {
+                    mIosLoadingDialog?.show()
+                } catch (e: Exception) {
+                    mIosLoadingDialog?.dismiss()
+                }
+            }
+        }
+    }
 }

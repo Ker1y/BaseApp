@@ -7,45 +7,46 @@ import com.drake.tooltip.dialog.BubbleDialog
 
 
 @SuppressLint("StaticFieldLeak")
-private var mLoadingDialog: LoadingDialog? = null
+var loadingDialog: LoadingDialog? = null
 
 @SuppressLint("StaticFieldLeak")
-private var mIosLoadingDialog: BubbleDialog? = null
+var iosLoadingDialog: BubbleDialog? = null
 
 
-
-fun FragmentActivity.showLoadingDialogEx(msg: String) {
+fun FragmentActivity.showLoading(msg: String) {
     if (!this.isFinishing) {
-        if (mIosLoadingDialog == null) {
-            mIosLoadingDialog = BubbleDialog(this)
-            mIosLoadingDialog?.setCanceledOnTouchOutside(false)
+        if (iosLoadingDialog == null) {
+            iosLoadingDialog = BubbleDialog(this)
+            iosLoadingDialog?.setCanceledOnTouchOutside(false)
         }
-        mIosLoadingDialog?.updateTitle(msg)
-        mIosLoadingDialog?.let {
+        iosLoadingDialog?.updateTitle(msg)
+        iosLoadingDialog?.let {
             if (!it.isShowing) {
                 try {
-                    mIosLoadingDialog?.show()
+                    iosLoadingDialog?.show()
                 } catch (e: Exception) {
-
+                    iosLoadingDialog?.dismiss()
+                    e.printStackTrace()
                 }
             }
         }
     }
 }
 
-fun Fragment.showLoadingDialogEx(msg: String) {
+fun Fragment.showLoading(msg: String) {
     activity?.let {
         if (!it.isFinishing) {
-            if (mIosLoadingDialog == null) {
-                mIosLoadingDialog = BubbleDialog(it)
+            if (iosLoadingDialog == null) {
+                iosLoadingDialog = BubbleDialog(it)
             }
-            mIosLoadingDialog?.updateTitle(msg)
-            mIosLoadingDialog?.let { dialog ->
+            iosLoadingDialog?.updateTitle(msg)
+            iosLoadingDialog?.let { dialog ->
                 if (!dialog.isShowing) {
                     try {
-                        mIosLoadingDialog?.show()
+                        iosLoadingDialog?.show()
                     } catch (e: Exception) {
-
+                        iosLoadingDialog?.dismiss()
+                        e.printStackTrace()
                     }
                 }
             }
@@ -56,13 +57,13 @@ fun Fragment.showLoadingDialogEx(msg: String) {
 /**
  * 关闭等待框
  */
-fun FragmentActivity.dismissLoadingExt() {
-    mIosLoadingDialog?.dismiss()
-    mIosLoadingDialog = null
+fun FragmentActivity.dismissLoading() {
+    iosLoadingDialog?.dismiss()
+    iosLoadingDialog = null
 }
 
 
-fun Fragment.dismissLoadingExt() {
-    mIosLoadingDialog?.dismiss()
-    mIosLoadingDialog = null
+fun Fragment.dismissLoading() {
+    iosLoadingDialog?.dismiss()
+    iosLoadingDialog = null
 }

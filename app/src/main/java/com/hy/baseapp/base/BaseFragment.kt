@@ -5,13 +5,9 @@ import android.view.View
 import androidx.annotation.ColorRes
 import androidx.databinding.ViewDataBinding
 import com.gyf.immersionbar.ImmersionBar
-import com.hy.baseapp.base.event.AppViewModel
-import com.hy.baseapp.base.event.EventViewModel
-import com.hy.baseapp.common.dismissLoadingExt
-import com.hy.baseapp.common.showLoadingDialogEx
+import com.hy.baseapp.common.dismissLoading
 import me.hy.jetpackmvvm.base.fragment.BaseVmDbFragment
 import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hy.jetpackmvvm.ext.getAppViewModel
 
 /**
  * 描述　: 你项目中的Fragment基类，在这里实现显示弹窗，吐司，还有自己的需求操作 ，如果不想用Databind，请继承
@@ -45,13 +41,6 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     override fun initData() {}
 
 
-    /**
-     * 关闭等待框
-     */
-    override fun dismissLoading() {
-        dismissLoadingExt()
-    }
-
     override fun onPause() {
         super.onPause()
 //        hideSoftKeyboard(activity)
@@ -73,13 +62,13 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     /**
      * 沉浸状态栏
      */
-    fun immersionFullStatusBar(){
+    fun immersionFullStatusBar() {
         ImmersionBar.with(this).statusBarDarkFont(true).transparentStatusBar().init()
     }
 
 
     override fun onDestroy() {
-        dismissLoading()
+//        dismissLoading()
         super.onDestroy()
     }
 

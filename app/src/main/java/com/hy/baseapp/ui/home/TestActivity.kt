@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.drake.net.utils.scopeDialog
 import com.google.android.material.color.MaterialColors
 import com.hy.baseapp.base.BaseActivity
 import com.hy.baseapp.base.BaseComposeActivity
@@ -26,6 +27,7 @@ import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
 class TestActivity : BaseComposeActivity<BaseViewModel>() {
 
     override fun initView(savedInstanceState: Bundle?) {
+        scopeDialog {  }
         setContent {
             PlanterThemeWithContent {
                 Content()
