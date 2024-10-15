@@ -2,7 +2,6 @@ package com.hy.baseapp.base.event
 
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ProcessUtils
-import com.blankj.utilcode.util.ScreenUtils
 import com.drake.statelayout.StateConfig
 import com.hy.baseapp.BuildConfig
 import com.hy.baseapp.R
@@ -13,7 +12,7 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.mmkv.MMKV
-import me.hy.jetpackmvvm.base.BaseApp
+import me.hy.base.base.BaseApp
 
 /**
  * <pre>

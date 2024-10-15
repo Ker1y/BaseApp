@@ -5,9 +5,8 @@ import android.view.View
 import androidx.annotation.ColorRes
 import androidx.databinding.ViewDataBinding
 import com.gyf.immersionbar.ImmersionBar
-import com.hy.baseapp.common.dismissLoading
-import me.hy.jetpackmvvm.base.fragment.BaseVmDbFragment
-import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hy.base.base.fragment.BaseVmDbFragment
+import me.hy.base.base.viewmodel.BaseViewModel
 
 /**
  * 描述　: 你项目中的Fragment基类，在这里实现显示弹窗，吐司，还有自己的需求操作 ，如果不想用Databind，请继承

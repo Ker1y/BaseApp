@@ -22,7 +22,7 @@ import com.hy.baseapp.R
 import com.hy.baseapp.base.event.App.Companion.appInstance
 import com.hy.baseapp.common.utils.MaskTransformation
 import com.hy.baseapp.common.utils.RoundedCornerCenterCrop
-import me.hy.jetpackmvvm.ext.util.dp2px
+import me.hy.base.ext.util.dp2px
 import java.io.File
 
 /**

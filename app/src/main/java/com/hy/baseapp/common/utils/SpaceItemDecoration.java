@@ -1,6 +1,6 @@
 package com.hy.baseapp.common.utils;
 
-import static me.hy.jetpackmvvm.ext.util.CommonExtKt.dp2px;
+import static me.hy.base.ext.util.CommonExtKt.dp2px;
 
 import android.graphics.Rect;
 import android.view.View;

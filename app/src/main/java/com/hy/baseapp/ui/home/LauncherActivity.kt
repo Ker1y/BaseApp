@@ -4,8 +4,8 @@ import android.os.Bundle
 import com.gyf.immersionbar.ktx.immersionBar
 import com.hy.baseapp.base.BaseActivity
 import com.hy.baseapp.databinding.ActivityLauncherBinding
-import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
-import me.hy.jetpackmvvm.ext.startActivity
+import me.hy.base.base.viewmodel.BaseViewModel
+import me.hy.base.ext.startActivity
 
 class LauncherActivity : BaseActivity<BaseViewModel, ActivityLauncherBinding>() {
     override fun initView(savedInstanceState: Bundle?) {

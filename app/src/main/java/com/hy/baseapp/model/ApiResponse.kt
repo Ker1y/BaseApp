@@ -2,7 +2,7 @@ package com.hy.baseapp.model
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
-import me.hy.jetpackmvvm.network.BaseResponse
+import me.hy.base.network.BaseResponse
 
 @Keep
 data class ApiResponse<T>(

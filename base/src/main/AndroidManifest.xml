@@ -6,7 +6,7 @@
     <application>
         <provider
             android:authorities="${applicationId}.KtxInstaller"
-            android:name="me.hy.jetpackmvvm.base.Ktx"
+            android:name="me.hy.base.base.Ktx"
             android:exported="false"/>
     </application>
 </manifest>

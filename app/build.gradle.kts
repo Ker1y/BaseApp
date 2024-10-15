@@ -127,6 +127,7 @@ dependencies {
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.runtime.livedata)
 
+    //Third
     implementation(libs.glide)
     implementation(libs.net.net)
     implementation(libs.third.brv)

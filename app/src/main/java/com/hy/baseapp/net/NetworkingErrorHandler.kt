@@ -17,8 +17,8 @@ import com.drake.tooltip.toast
 import com.hy.baseapp.R
 import com.hy.baseapp.common.extension.getResStr
 import com.hy.baseapp.net.exception.NoNetException
-import me.hy.jetpackmvvm.base.appContext
-import me.hy.jetpackmvvm.network.AppException
+import me.hy.base.base.appContext
+import me.hy.base.network.AppException
 import java.net.UnknownHostException
 
 class NetworkingErrorHandler :NetErrorHandler {

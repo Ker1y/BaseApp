@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
-import me.hy.jetpackmvvm.base.fragment.BaseVmFragment
-import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hy.base.base.fragment.BaseVmFragment
+import me.hy.base.base.viewmodel.BaseViewModel
 
 abstract class BaseComposeFragment<VM : BaseViewModel> : BaseVmFragment<VM>() {
 

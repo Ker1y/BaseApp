@@ -4,8 +4,8 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
-import me.hy.jetpackmvvm.base.activity.BaseVmActivity
-import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hy.base.base.activity.BaseVmActivity
+import me.hy.base.base.viewmodel.BaseViewModel
 
 abstract class BaseComposeActivity<VM : BaseViewModel>: BaseVmActivity<VM>() {
 

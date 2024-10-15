@@ -5,7 +5,7 @@ import com.drake.net.cache.CacheMode
 import com.hy.baseapp.model.TestModel
 import com.hy.baseapp.net.stateCallback.ListDataUiState
 import com.hy.baseapp.task.HomeTask
-import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hy.base.base.viewmodel.BaseViewModel
 
 /**
  * <pre>

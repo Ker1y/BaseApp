@@ -9,7 +9,7 @@ import com.drake.net.request.kType
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.serializer
-import me.hy.jetpackmvvm.network.AppException
+import me.hy.base.network.AppException
 import okhttp3.Response
 import org.json.JSONException
 import org.json.JSONObject

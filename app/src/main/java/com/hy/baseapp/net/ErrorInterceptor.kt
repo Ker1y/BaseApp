@@ -2,8 +2,8 @@ package com.hy.baseapp.net
 
 import com.blankj.utilcode.util.LogUtils
 import com.hy.baseapp.model.ApiResponse
-import me.hy.jetpackmvvm.ext.fromJson
-import me.hy.jetpackmvvm.network.AppException
+import me.hy.base.ext.fromJson
+import me.hy.base.network.AppException
 import okhttp3.Interceptor
 import okhttp3.MediaType
 import okhttp3.Response

@@ -20,8 +20,8 @@ import com.hy.baseapp.R
 import com.hy.baseapp.common.DESIGN_HEIGHT
 import com.hy.baseapp.common.DESIGN_WIDTH
 import com.noober.background.BackgroundLibrary
-import me.hy.jetpackmvvm.base.activity.BaseVmDbActivity
-import me.hy.jetpackmvvm.base.viewmodel.BaseViewModel
+import me.hy.base.base.activity.BaseVmDbActivity
+import me.hy.base.base.viewmodel.BaseViewModel
 
 /**
  * 描述　: 你项目中的Activity基类，在这里实现显示弹窗，吐司，还有加入自己的需求操作 ，如果不想用Databind，请继承

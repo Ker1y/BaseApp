@@ -14,8 +14,7 @@ import com.hy.baseapp.R
 import com.hy.baseapp.base.event.App.Companion.appInstance
 import com.hy.baseapp.common.utils.TokenInterceptor
 import com.hy.baseapp.net.Api.BASE
-import me.hy.jetpackmvvm.network.interceptor.CacheInterceptor
-import me.hy.jetpackmvvm.network.interceptor.logging.LogInterceptor
+import me.hy.base.network.interceptor.logging.LogInterceptor
 import okhttp3.Cache
 import java.io.File
 import java.util.concurrent.TimeUnit

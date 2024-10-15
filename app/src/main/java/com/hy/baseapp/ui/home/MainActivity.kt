@@ -4,13 +4,11 @@ import android.os.Bundle
 import com.blankj.utilcode.util.LogUtils
 import com.hy.baseapp.base.BaseActivity
 import com.hy.baseapp.base.event.eventViewModel
-import com.hy.baseapp.common.extension.requestPermissions
-import com.hy.baseapp.common.utils.image.openGalleryImage
 import com.hy.baseapp.databinding.ActivityMainBinding
 import com.hy.baseapp.viewmodel.HomeViewModel
-import me.hy.jetpackmvvm.ext.observe
-import me.hy.jetpackmvvm.ext.startActivity
-import me.hy.jetpackmvvm.ext.view.click
+import me.hy.base.ext.observe
+import me.hy.base.ext.startActivity
+import me.hy.base.ext.view.click
 
 class MainActivity : BaseActivity<HomeViewModel, ActivityMainBinding>() {
 
